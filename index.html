@@ -16,9 +16,9 @@
             position: fixed;
             z-index: -1000;
             transition: none;
-            /* Removemos la transición suave */
             pointer-events: none;
-            animation: bounce 10s linear infinite;
+            animation: bounce 20s linear infinite;
+            opacity: 50%;
         }
         
         .header h1 {
@@ -79,6 +79,7 @@
         
         .beer-name {
             font-weight: bold;
+            font-size: 20px;
         }
         
         .description {
@@ -166,41 +167,21 @@
             letter-spacing: 1px;
         }
         
-        .borde-inferior {
-            border-left: 8px solid #e9ac0c;
-            /* Cambia el color y el grosor del borde según tus necesidades */
-        }
-        
-        .borde-inferior2 {
-            border-left: 8px solid #9b111e;
-            /* Cambia el color y el grosor del borde según tus necesidades */
-        }
-        
-        .borde-inferior3 {
-            border-left: 8px solid #e8d812;
-            /* Cambia el color y el grosor del borde según tus necesidades */
-        }
-        
         @keyframes bounce {
             0% {
-                top: 0;
-                left: 0;
+                transform: translate(0, 0);
             }
             25% {
-                top: calc(100vh - 40px);
-                left: calc(100vw - 150px);
+                transform: translate(calc(100vw - 100%), calc(100vh - 100%));
             }
             50% {
-                top: calc(100vh - 40px);
-                left: 0;
+                transform: translate(0, calc(100vh - 100%));
             }
             75% {
-                top: 0;
-                left: calc(100vw - 150px);
+                transform: translate(calc(100vw - 100%), 0);
             }
             100% {
-                top: 0;
-                left: 0;
+                transform: translate(0, 0);
             }
         }
     </style>
@@ -224,7 +205,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="beer-name borde-inferior">Blonde</td>
+                    <td class="beer-name" style="border-left: 8px solid #e9ac0c">Blonde</td>
                     <td class="description">
                         Es la rubia artesanal clásica, fácil de tomar, refrescante y sin sabores fuertes. Vas a notar principalmente los sabores de la cebada malteada.
                     </td>
@@ -248,7 +229,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name borde-inferior2">Scottish</td>
+                    <td class="beer-name" style="border-left: 8px solid #9b111e">Scottish</td>
                     <td class="description">
                         Maltas caramelizadas para obtener sabores típicos a caramelo, colores más oscuros y final dulce. Podes encontrar notas tostadas y algo de frutos secos (principalmente almendras).
 
@@ -274,7 +255,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name borde-inferior3">American IPA</td>
+                    <td class="beer-name" style="border-left: 8px solid #e8d812">American IPA</td>
                     <td class="description">
                         Un mix de lúpulos americanos domina en esta cerveza, dándole amargor, sabor y mucho aroma. Un poco más amarga que una NEIPA, con final más seco pero más ligera.
                         <p></p>
@@ -298,7 +279,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name">Porter</td>
+                    <td class="beer-name" style="border-left: 8px solid #3d1f0c">Porter</td>
                     <td class="description">
                         La birra mas oscura que tenemos. Con todos esos sabores que los amantes de las birras negras buscan pero sin ser fuerte y sin pérdida de tomabilidad. Recomendamos mucho tomarla de postre para cerrar la noche.
                         <p></p>
@@ -323,9 +304,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name">NEIPA</td>
+                    <td class="beer-name" style="border-left: 8px solid #ebe013">NEIPA</td>
                     <td class="description">
-                        Mucho menos amargor que una West coast, pero con mucho aroma y sabor. Aca tambien jugamos con lúpulos americanos para armar este jugo de frutas.
+                        Mucho menos amargor que una American IPA, pero con mucho aroma y sabor. Lúpulos americanos para armar este jugo de frutas.
                         <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
                         </p>
                         <p></p>
@@ -363,9 +344,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="beer-name">APA</td>
+                    <td class="beer-name" style="border-left: 8px solid hsl(30, 100%, 56%)">APA</td>
                     <td class="description">
-                        Es la rubia artesanal clásica, fácil de tomar, refrescante y sin sabores fuertes. Vas a notar principalmente los sabores de la cebada malteada.
+                        Esta orientada al lúpulo pero con un soporte de maltas mayor que en una American IPA buscando balance entre ambos, el aroma en este caso es mas resinoso y un amargor intermedio.
                     </td>
                     <td>$4000</td>
                     <td>
@@ -383,13 +364,12 @@
                     </td>
                     <td>
                         <div>Vaso IPA (500ml)</div>
-                        <div>Vaso IPA (500ml)</div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name">Sour</td>
+                    <td class="beer-name" style="border-left: 8px solid hsl(338, 95%, 56%)">Sour</td>
                     <td class="description">
-                        Es una birra ácida, pero ácida real, pero no pierde la tomabilidad y para hacerla mas rica, tiene agregado de maracuya, mango y guayaba.
+                        Es una birra ácida, pero ácida real, pero no pierde la tomabilidad y para hacerla mas rica, tiene agregado de mango, guayaba y moras.
                         <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
                         </p>
                     </td>
@@ -411,7 +391,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name">Pilsner</td>
+                    <td class="beer-name" style="border-left: 8px solid #e3df06">Pilsner</td>
                     <td class="description">
                         Es una típica lager, es limpia (sin aromas que destaquen de la fermentación) y refrescante. Es un poco más amarga que la Blonde pero igual o más ligera.
                         <p></p>
@@ -437,7 +417,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name">Honey</td>
+                    <td class="beer-name" style="border-left: 8px solid #f17006">Honey</td>
                     <td class="description">
                         Es una cerveza a la que le agregamos miel en distintas etapas de la fermentación para que la presencia de la misma sea notoria tanto en aroma como en sabor al final de cada sorbo.
                         <p></p>
@@ -462,7 +442,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="beer-name">Hefeweizen</td>
+                    <td class="beer-name" style="border-left: 8px solid #f1d906">Hefeweizen</td>
                     <td class="description">
                         Cerveza típica alemana con un porcentaje alto de trigo para que la levadura genere los típicos aromas y sabores a banana y clavo de olor y la turbidez que es tan característica.
                         <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
