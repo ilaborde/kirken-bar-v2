@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 10px auto;
+            padding: 10px;
+            background: #f3ecec7d;
+            font-size: 16px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .header h1 {
+            font-size: 4em;
+            font-weight: 900;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            letter-spacing: 1px;
+        }
+        
+        .header::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #F26430 30%, #F26430 70%, transparent 100%);
+            margin-top: -10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        .table-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        table {
+            width: calc(50% - 5px);
+            border-collapse: separate;
+            border-spacing: 0 4px;
+        }
+        
+        th,
+        td {
+            padding: 6px;
+            text-align: left;
+        }
+        
+        th {
+            background: #F26430;
+            color: white;
+        }
+        
+        td {
+            background: white;
+            vertical-align: top;
+        }
+        
+        tr {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .beer-name {
+            font-weight: bold;
+        }
+        
+        .description {
+            font-size: 16px;
+            max-width: 250px;
+        }
+        
+        .abv-circle {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 3px;
+        }
+        
+        .dots {
+            display: inline-flex;
+            gap: 1px;
+        }
+        
+        .dot {
+            width: 14px;
+            height: 14px;
+            margin: 2px;
+            background: #ddd;
+            display: inline-block;
+        }
+        
+        .dot.active {
+            background: #065f06;
+        }
+        
+        .price-section {
+            margin-top: 15px;
+        }
+        
+        .price-section h2 {
+            background: #F26430;
+            color: white;
+            padding: 6px;
+            margin: 0;
+            font-size: 1em;
+        }
+        
+        .price-list {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .price-item {
+            font-size: 16px;
+        }
+        
+        .invited-beer {
+            font-style: italic;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>KIRKEN</h1>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cerveza</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Alcohol</th>
+                    <th>Amargor</th>
+                    <th>Vaso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="beer-name">Blonde</td>
+                    <td class="description">
+                        Es la rubia artesanal clásica, fácil de tomar, refrescante y sin sabores fuertes. Vas a notar principalmente los sabores de la cebada malteada.
+                    </td>
+                    <td>$3500</td>
+                    <td>
+                        4.8%
+
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Pinta (630ml)</div>
+                        <div>Media (300ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">Scottish</td>
+                    <td class="description">
+                        Maltas caramelizadas para obtener sabores típicos a caramelo, colores más oscuros y final dulce. Podes encontrar notas tostadas y algo de frutos secos (principalmente almendras).
+                    </td>
+                    <td>$3500</td>
+                    <td>
+                        6%
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Pinta (630ml)</div>
+                        <div>Media (300ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">American IPA</td>
+                    <td class="description">
+                        Un mix de lúpulos americanos domina en esta cerveza, dándole amargor, sabor y mucho aroma. Un poco más amarga que una NEIPA, con final más seco pero más ligera.
+                    </td>
+                    <td>$4000</td>
+                    <td>
+                        4.8%
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Vaso IPA (500ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">Porter</td>
+                    <td class="description">
+                        La birra mas oscura que tenemos. Con todos esos sabores que los amantes de las birras negras buscan pero sin ser fuerte y sin pérdida de tomabilidad. Recomendamos mucho tomarla de postre para cerrar la noche.
+                    </td>
+                    <td>$3500</td>
+                    <td>
+                        6%
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Pinta (630ml)</div>
+                        <div>Media (300ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">NEIPA</td>
+                    <td class="description">
+                        Mucho menos amargor que una West coast, pero con mucho aroma y sabor. Aca tambien jugamos con lúpulos americanos para armar este jugo de frutas.
+                        <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
+                        </p>
+                    </td>
+                    <td>$4000</td>
+                    <td>
+                        6,5%
+                    </td>
+                    <td>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Vaso IPA (500ml)</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Cerveza</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Alcohol</th>
+                    <th>Amargor</th>
+                    <th>Vaso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="beer-name">APA</td>
+                    <td class="description">
+                        Es la rubia artesanal clásica, fácil de tomar, refrescante y sin sabores fuertes. Vas a notar principalmente los sabores de la cebada malteada.
+                    </td>
+                    <td>$4000</td>
+                    <td>
+                        4.8%
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Vaso IPA (500ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">Pilsner</td>
+                    <td class="description">
+                        Es una típica lager, es limpia (sin aromas que destaquen de la fermentación) y refrescante. Es un poco más amarga que la Blonde pero igual o más ligera.
+                    </td>
+                    <td>$3500</td>
+                    <td>
+                        5%
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Pinta (630ml)</div>
+                        <div>Media (300ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">Sour</td>
+                    <td class="description">
+                        Es una birra ácida, pero ácida real, pero no pierde la tomabilidad y para hacerla mas rica, tiene agregado de maracuya, mango y guayaba.
+                        <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
+                        </p>
+                    </td>
+                    <td>$4000</td>
+                    <td>
+                        3,3%
+                    </td>
+                    <td>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Copa brunello (500ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">Honey</td>
+                    <td class="description">
+                        Es una cerveza a la que le agregamos miel en distintas etapas de la fermentación para que la presencia de la misma sea notoria tanto en aroma como en sabor al final de cada sorbo.
+                    </td>
+                    <td>$3500</td>
+                    <td>
+                        6.5%
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Pinta (630ml)</div>
+                        <div>Media (300ml)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="beer-name">Hefeweizen</td>
+                    <td class="description">
+                        Cerveza típica alemana con un porcentaje alto de trigo para que la levadura genere los típicos aromas y sabores a banana y clavo de olor y la turbidez que es tan característica.
+                        <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
+                        </p>
+                    </td>
+                    <td>$3500</td>
+                    <td>
+                        4%
+                    </td>
+                    <td>
+
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>Copa weiss (500ml)</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="price-section">
+        <h2>Pack de 4 latas</h2>
+        <div class="price-list">
+            <div class="price-item">
+                <span>Pack Blonde x4: </span>
+                <strong>$5200</strong>
+            </div>
+            <div class="price-item">
+                <span>Pack Scottish x4: </span>
+                <strong>$5200</strong>
+            </div>
+            <div class="price-item">
+                <span>Pack IPA x4: </span>
+                <strong>$5600</strong>
+            </div>
+            <div class="price-item">
+                <span>Pack Mixto x4: </span>
+                <strong>$5400</strong>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
