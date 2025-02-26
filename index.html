@@ -109,6 +109,10 @@
         
         .price-section {
             margin-top: 15px;
+            max-width: 400px;
+            /* Ajusta este valor según necesites */
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .price-section h2 {
@@ -117,29 +121,48 @@
             padding: 6px;
             margin: 0;
             font-size: 1em;
+            text-align: center;
         }
         
         .price-list {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 20px;
             padding: 10px;
             background: white;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .price-item {
-            font-size: 16px;
+            font-size: 0.9em;
+            text-align: center;
         }
         
         .invited-beer {
             font-style: italic;
             margin-bottom: 0px;
         }
+        
+        .floating-title {
+            position: fixed;
+            z-index: 1000;
+            transition: all 2s ease;
+            pointer-events: none;
+        }
+        
+        .floating-title h1 {
+            font-size: 4em;
+            font-weight: 900;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="header">
+    <div class="floating-title">
         <h1>KIRKEN</h1>
     </div>
     <div class="table-container">
@@ -415,26 +438,37 @@
     </div>
 
     <div class="price-section">
-        <h2>Pack de 4 latas</h2>
+        <h2>Latitas</h2>
         <div class="price-list">
             <div class="price-item">
-                <span>Pack Blonde x4: </span>
-                <strong>$5200</strong>
+                <p><span>Blonde | Scottish | Honey | Porter</span>
+                    <strong>$3000</strong>
+                </p>
             </div>
             <div class="price-item">
-                <span>Pack Scottish x4: </span>
-                <strong>$5200</strong>
-            </div>
-            <div class="price-item">
-                <span>Pack IPA x4: </span>
-                <strong>$5600</strong>
-            </div>
-            <div class="price-item">
-                <span>Pack Mixto x4: </span>
-                <strong>$5400</strong>
+                <p><span>IPA | APA</span>
+                    <strong>$3500</strong></p>
             </div>
         </div>
     </div>
+    <script>
+        function moveTitle() {
+            const title = document.querySelector('.floating-title');
+            const maxX = window.innerWidth - title.offsetWidth;
+            const maxY = window.innerHeight - title.offsetHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            title.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Mover el título cada 10 segundos
+        setInterval(moveTitle, 10000);
+
+        // Mover el título inicialmente
+        moveTitle();
+    </script>
 </body>
 
 </html>
