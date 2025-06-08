@@ -2,503 +2,320 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pizarra de Cervezas - Kirken</title>
+
+    <!-- Fuentes: Bebas Neue + Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: system-ui, -apple-system, sans-serif;
-            margin: 10px auto;
-            padding: 10px;
-            background: #f3ecec7d;
-            font-size: 20px;
-        }
-        
-        .header {
-            position: fixed;
-            z-index: -1000;
-            transition: none;
-            pointer-events: none;
-            animation: bounce 20s linear infinite;
-            opacity: 50%;
-        }
-        
-        .header h1 {
-            font-size: 4em;
-            font-weight: 900;
             margin: 0;
-            padding: 0;
-            color: #000;
-            letter-spacing: 2px;
-        }
-        /* .header::after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #F26430 30%, #F26430 70%, transparent 100%);
-            margin-top: -10px;
-        } */
-        
-        .subtitle {
-            text-align: center;
-            margin: 0 0 10px 0;
+            font-family: 'Montserrat', sans-serif;
+            background: #f4f0e0;
             color: #333;
-            font-size: 0.9em;
+            padding: 20px;
         }
         
-        .table-container {
+        .pizarra {
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+            gap: 40px;
         }
         
-        table {
-            width: calc(50% - 5px);
-            border-collapse: separate;
-            border-spacing: 0 4px;
+        .columna {
+            flex: 1;
+            display: grid;
+            grid-template-rows: repeat(5, auto);
+            gap: 30px;
         }
         
-        th,
-        td {
-            padding: 6px;
-            text-align: left;
+        .cerveza {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
         }
         
-        th {
-            background: #F26430;
-            color: white;
+        .nombre {
+            font-family: 'Bebas Neue', sans-serif;
+            color: #1561a0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            padding-left: 12px;
+            border-left: 12px solid transparent;
         }
         
-        td {
-            background: #ffffff4f;
-            vertical-align: top;
-            height: 142px;
+        .descripcion {
+            font-size: 1.3rem;
+            color: #444;
+            margin-bottom: 12px;
+            padding-left: 12px;
+            min-height: 100px;
         }
         
-        tr {
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        
-        .beer-name {
-            font-weight: bold;
-            font-size: 30px;
-        }
-        
-        .description {
-            font-size: 16px;
-            max-width: 250px;
-            position: relative;
-        }
-        
-        .abv-circle {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 3px;
-        }
-        
-        .dots {
-            display: inline-flex;
-            gap: 1px;
-        }
-        
-        .dot {
-            width: 14px;
-            height: 14px;
-            margin: 2px;
-            background: #ddd;
-            display: inline-block;
-        }
-        
-        .dot.active {
-            background: #065f06;
-        }
-        
-        .price-section {
-            margin-top: 15px;
-            max-width: 400px;
-            /* Ajusta este valor según necesites */
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .price-section h2 {
-            background: #F26430;
-            color: white;
-            padding: 6px;
-            margin: 0;
-            font-size: 1em;
-            text-align: center;
-        }
-        
-        .price-list {
+        .info-linea {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px;
-            background: white;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            justify-content: flex-start;
+            align-items: center;
+            gap: 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding-left: 12px;
         }
         
-        .price-item {
-            font-size: 17px;
-            text-align: center;
+        .amargor {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         
-        .invited-beer {
-            font-style: italic;
-            margin-bottom: 0px;
+        .amargor span {
+            font-weight: 600;
+        }
+        
+        .pelota {
+            font-size: 1.6rem;
+        }
+        
+        .pelota.vacia {
+            opacity: 0.3;
+        }
+        
+        .logo-rebote {
             position: absolute;
-            bottom: 10px;
+            top: 100px;
+            left: 100px;
+            width: 300px;
+            opacity: 0.06;
+            z-index: 0;
         }
         
-        .floating-title {
-            position: fixed;
-            z-index: 1000;
-            transition: all 2s ease;
-            pointer-events: none;
-        }
-        
-        .floating-title h1 {
+        .logo-rebote h1 {
             font-size: 4em;
             font-weight: 900;
-            margin: 0;
-            padding: 0;
+            letter-spacing: 2px;
             color: #000;
-            letter-spacing: 1px;
-        }
-        
-        @keyframes bounce {
-            0% {
-                transform: translate(0, 0);
-            }
-            25% {
-                transform: translate(calc(100vw - 100%), calc(100vh - 100%));
-            }
-            50% {
-                transform: translate(0, calc(100vh - 100%));
-            }
-            75% {
-                transform: translate(calc(100vw - 100%), 0);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
+            font-family: system-ui, -apple-system, sans-serif;
         }
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <h1>KIRKEN</h1>
+    <div class="logo-rebote" id="logo-rebote">
+        <H1>KIRKEN</H1>
     </div>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Cerveza</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Alcohol</th>
-                    <th>Amargor</th>
-                    <th>Vaso</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #e9ac0c">Blonde</td>
-                    <td class="description">
-                        Es la rubia artesanal clásica, fácil de tomar, refrescante y sin sabores fuertes. Vas a notar principalmente los sabores de la cebada malteada.
-                    </td>
-                    <td>$4000</td>
-                    <td>
-                        4.8%
-                    </td>
-                    <td>
+    <div class="pizarra">
 
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Pinta (630ml)</div>
-                        <div>Media (300ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #9b111e">Scottish</td>
-                    <td class="description">
-                        Maltas caramelizadas para obtener sabores típicos a caramelo, colores más oscuros y final dulce. Podes encontrar notas tostadas y algo de frutos secos (principalmente almendras).
+        <!-- Columna izquierda: suaves / claras -->
 
-                        <p></p>
-                    </td>
-                    <td>$4000</td>
-                    <td>
-                        6%
-                    </td>
-                    <td>
-
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Pinta (630ml)</div>
-                        <div>Media (300ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #e8d812">American IPA</td>
-                    <td class="description">
-                        Un mix de lúpulos americanos domina en esta cerveza, dándole amargor, sabor y mucho aroma. Un poco más amarga que una NEIPA, con final más seco pero más ligera.
-                        <p></p>
-                    </td>
-                    <td>$4500</td>
-                    <td>
-                        4.8%
-                    </td>
-                    <td>
-
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Vaso IPA (500ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #3d1f0c">Porter</td>
-                    <td class="description">
-                        La birra mas oscura que tenemos. Con todos esos sabores que los amantes de las birras negras buscan pero sin ser fuerte y sin pérdida de tomabilidad. Recomendamos mucho tomarla de postre para cerrar la noche.
-                        <p></p>
-                    </td>
-                    <td>$4000</td>
-                    <td>
-                        6%
-                    </td>
-                    <td>
-
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Pinta (630ml)</div>
-                        <div>Media (300ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #ebe013">NEIPA</td>
-                    <td class="description">
-                        Mucho menos amargor que una American IPA, pero con mucho aroma y sabor. Lúpulos americanos para armar este jugo de frutas.
-                        <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
-                        </p>
-                        <p></p>
-                    </td>
-                    <td>$4500</td>
-                    <td>
-                        6,5%
-                    </td>
-                    <td>
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Vaso IPA (500ml)</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Cerveza</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Alcohol</th>
-                    <th>Amargor</th>
-                    <th>Vaso</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid hsl(30, 100%, 56%)">APA</td>
-                    <td class="description">
-                        Esta orientada al lúpulo pero con un soporte de maltas mayor que en una American IPA buscando balance entre ambos, el aroma en este caso es mas resinoso y un amargor intermedio.
-                    </td>
-                    <td>$4000</td>
-                    <td>
-                        5,3%
-                    </td>
-                    <td>
-
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Vaso IPA (500ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid hsl(338, 95%, 56%)">Sour</td>
-                    <td class="description">
-                        Es una birra ácida, pero ácida real, pero no pierde la tomabilidad y para hacerla mas rica, tiene agregado de mango, guayaba y moras.
-                        <p class="invited-beer">Invitada cerveceria amiga Mil Ojos.
-                        </p>
-                    </td>
-                    <td>$4500</td>
-                    <td>
-                        3,3%
-                    </td>
-                    <td>
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Copa brunello (500ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #e3df06">German Pils</td>
-                    <td class="description">
-                        Es una típica lager: limpia y refrescante. Es un poco más amarga que la Blonde pero igual o más ligera.
-                        <p class="invited-beer">Invitada cerveceria amiga Metamorfosis.
-                        </p>
-                    </td>
-                    <td>$4000</td>
-                    <td>
-                        5%
-                    </td>
-                    <td>
-
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Pinta (630ml)</div>
-                        <div>Media (300ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #f17006">Honey</td>
-                    <td class="description">
-                        Es una cerveza a la que le agregamos miel en distintas etapas de la fermentación para que la presencia de la misma sea notoria tanto en aroma como en sabor al final de cada sorbo.
-                        <p></p>
-                    </td>
-                    <td>$4000</td>
-                    <td>
-                        6.5%
-                    </td>
-                    <td>
-
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Pinta (630ml)</div>
-                        <div>Media (300ml)</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="beer-name" style="border-left: 8px solid #f1d906">Session IPA</td>
-                    <td class="description">
-                        Vas a encontrar sabores parecidos a la American IPA pero con más tomabilidad y menos amargor.
-                    </td>
-                    <td>$4000</td>
-                    <td>
-                        4%
-                    </td>
-                    <td>
-
-                        <div class="dots">
-                            <span class="dot active"></span>
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>Vaso IPA (500ml)</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="price-section">
-        <h2>Latitas</h2>
-        <div class="price-list">
-            <div class="price-item">
-                <p><span>Blonde | Scottish | Honey | Porter</span>
-                    <strong>$3000</strong>
-                </p>
+        <div class="columna">
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #f7d273;">Pilsner</div>
+                <div class="descripcion">Es una típica lager, es limpia (sin aromas que destaquen de la fermentación) y refrescante. Es un poco más amarga que la Blonde pero igual o más ligera.</div>
+                <div class="info-linea">
+                    <div>Precio: $4000</div>
+                    <div>ABV: 5%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
             </div>
-            <div class="price-item">
-                <p><span>IPA | APA</span>
-                    <strong>$3500</strong></p>
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #e9ac0c;">Blonde</div>
+                <div class="descripcion"> Es la rubia artesanal clásica, fácil de tomar, refrescante y sin sabores fuertes. Vas a notar principalmente los sabores de la cebada malteada.</div>
+                <div class="info-linea">
+                    <div>Precio: $4000</div>
+                    <div>ABV: 4.8%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
             </div>
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #f8c13e;">Honey</div>
+                <div class="descripcion"> Es una cerveza a la que le agregamos miel en distintas etapas de la fermentación para que la presencia de la misma sea notoria tanto en aroma como en sabor al final de cada sorbo.</div>
+                <div class="info-linea">
+                    <div>Precio: $4900</div>
+                    <div>ABV: 6.5%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #e5ff0b;">Sour</div>
+                <div class="descripcion">
+                    Es una birra ácida, pero ácida real, pero no pierde la tomabilidad y para hacerla mas rica, tiene agregado de mango, guayaba y maracuya.
+                    <p>Invitada cerveceria Mil Ojos.</p>
+                </div>
+                <div class="info-linea">
+                    <div>Precio: $4500</div>
+                    <div>ABV: 3.3%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #f8c13e;">Session IPA</div>
+                <div class="descripcion"> Vas a encontrar sabores parecidos a la American IPA pero con más tomabilidad y menos amargor.
+                </div>
+                <div class="info-linea">
+                    <div>Precio: $4000</div>
+                    <div>ABV: 4.5%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        <div class="columna">
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #c06a1e;">APA</div>
+                <div class="descripcion">Esta orientada al lúpulo pero con un soporte de maltas mayor que en una American IPA buscando balance entre ambos, el aroma en este caso es mas resinoso y un amargor intermedio.</div>
+                <div class="info-linea">
+                    <div>Precio: $4000</div>
+                    <div>ABV: 5.3%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #f1a23b;">NEIPA</div>
+                <div class="descripcion">Mucho menos amargor que una American IPA, pero con mucho aroma y sabor. Lúpulos americanos para armar este jugo de frutas.</div>
+                <div class="info-linea">
+                    <div>Precio: $4500</div>
+                    <div>ABV: 6%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #e8d812;">American IPA</div>
+                <div class="descripcion">Un mix de lúpulos americanos domina en esta cerveza, dándole amargor, sabor y mucho aroma. Un poco más amarga que una NEIPA, con final más seco pero más ligera.</div>
+                <div class="info-linea">
+                    <div>Precio: $4500</div>
+                    <div>ABV: 5.5%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #9b111e;">Scottish</div>
+                <div class="descripcion">Maltas caramelizadas para obtener sabores típicos a caramelo, colores más oscuros y final dulce. Podes encontrar notas tostadas y algo de frutos secos (principalmente almendras).</div>
+                <div class="info-linea">
+                    <div>Precio: $4000</div>
+                    <div>ABV: 6%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #3d1f0c;">Porter</div>
+                <div class="descripcion">La birra mas oscura que tenemos. Con todos esos sabores que los amantes de las birras negras buscan pero sin ser fuerte y sin pérdida de tomabilidad. Recomendamos mucho tomarla de postre para cerrar la noche.</div>
+                <div class="info-linea">
+                    <div>Precio: $4000</div>
+                    <div>ABV: 6%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
     <script>
-        function moveTitle() {
-            const title = document.querySelector('.floating-title');
-            const maxX = window.innerWidth - title.offsetWidth;
-            const maxY = window.innerHeight - title.offsetHeight;
+        const logo = document.getElementById('logo-rebote');
+        let posX = 100,
+            posY = 100;
+        let velX = 2,
+            velY = 2;
 
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
+        function animate() {
+            const screenW = window.innerWidth - logo.clientWidth;
+            const screenH = window.innerHeight - logo.clientHeight;
 
-            title.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            posX += velX;
+            posY += velY;
+
+            if (posX <= 0 || posX >= screenW) velX *= -1;
+            if (posY <= 0 || posY >= screenH) velY *= -1;
+
+            logo.style.left = posX + 'px';
+            logo.style.top = posY + 'px';
+
+            requestAnimationFrame(animate);
         }
 
-        // Mover el título cada 10 segundos
-        setInterval(moveTitle, 10000);
-
-        // Mover el título inicialmente
-        moveTitle();
+        animate();
     </script>
 </body>
 
