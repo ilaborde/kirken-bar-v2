@@ -13,9 +13,10 @@
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background: #f6eee3;
+            background: rgb(1 7 159);
             color: #333;
             padding: 20px;
+            overflow: hidden;
         }
         
         .pizarra {
@@ -34,13 +35,13 @@
         }
         
         .cerveza {
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #fffbfb;
             padding-bottom: 10px;
         }
         
         .nombre {
             font-family: 'Bebas Neue', sans-serif;
-            color: #1561a0;
+            color: #fffbfb;
             font-size: 2.5rem;
             letter-spacing: 1px;
             margin-bottom: 6px;
@@ -50,7 +51,7 @@
         
         .descripcion {
             font-size: 1.3rem;
-            color: #444;
+            color: #fffbfb;
             margin-bottom: 12px;
             padding-left: 12px;
             min-height: 100px;
@@ -58,6 +59,7 @@
         
         .info-linea {
             display: flex;
+            color: #fffbfb;
             justify-content: flex-start;
             align-items: center;
             gap: 40px;
@@ -81,7 +83,7 @@
         }
         
         .pelota.vacia {
-            opacity: 0.3;
+            opacity: 0.5;
         }
         
         .logo-rebote {
@@ -89,7 +91,7 @@
             top: 100px;
             left: 100px;
             width: 300px;
-            opacity: 0.06;
+            opacity: 0.3;
             z-index: 0;
         }
         
@@ -97,7 +99,7 @@
             font-size: 4em;
             font-weight: 900;
             letter-spacing: 2px;
-            color: #000;
+            color: #fffbfb;
             font-family: system-ui, -apple-system, sans-serif;
         }
     </style>
@@ -298,16 +300,17 @@
             posY = 100;
         let velX = 2,
             velY = 2;
+        const margin = 10; // margen de seguridad para evitar acercarse demasiado al borde
 
         function animate() {
-            const screenW = window.innerWidth - logo.clientWidth;
-            const screenH = window.innerHeight - logo.clientHeight;
+            const screenW = window.innerWidth - logo.clientWidth - margin;
+            const screenH = window.innerHeight - logo.clientHeight - margin;
 
             posX += velX;
             posY += velY;
 
-            if (posX <= 0 || posX >= screenW) velX *= -1;
-            if (posY <= 0 || posY >= screenH) velY *= -1;
+            if (posX <= margin || posX >= screenW) velX *= -1;
+            if (posY <= margin || posY >= screenH) velY *= -1;
 
             logo.style.left = posX + 'px';
             logo.style.top = posY + 'px';
