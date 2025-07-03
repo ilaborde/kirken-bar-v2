@@ -102,6 +102,27 @@
             color: #fffbfb;
             font-family: system-ui, -apple-system, sans-serif;
         }
+        
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .cerveza.proximamente .nombre {
+            animation: blink 1.5s infinite;
+        }
+        
+        .cerveza.not-available {
+            opacity: 0.4;
+            position: relative;
+        }
     </style>
 </head>
 
@@ -164,8 +185,8 @@
                 </div>
             </div>
 
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #e5ff0b;">Sour</div>
+            <div class="cerveza not-available">
+                <div class="nombre" style="border-left-color: #e5ff0b;">Sour - No disponible</div>
                 <div class="descripcion">
                     Es una birra ácida, pero ácida real, pero no pierde la tomabilidad y para hacerla mas rica, tiene agregado de mango, guayaba y maracuya.
                     <p>Invitada cerveceria Mil Ojos.</p>
@@ -184,8 +205,8 @@
                 </div>
             </div>
 
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #f8c13e;">Session IPA</div>
+            <div class="cerveza not-available">
+                <div class="nombre" style="border-left-color: #f8c13e;">Session IPA - No disponible</div>
                 <div class="descripcion"> Vas a encontrar sabores parecidos a la American IPA pero con más tomabilidad y menos amargor.
                 </div>
                 <div class="info-linea">
@@ -206,17 +227,17 @@
 
         <div class="columna">
 
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #c06a1e;">APA</div>
-                <div class="descripcion">Esta orientada al lúpulo pero con un soporte de maltas mayor que en una American IPA buscando balance entre ambos, el aroma en este caso es mas resinoso y un amargor intermedio.</div>
+            <div class="cerveza proximamente">
+                <div class="nombre" style="border-left-color: #3d1f0c;">Pastry Porter ⭐</div>
+                <div class="descripcion">Proximamente</div>
                 <div class="info-linea">
-                    <div>Precio: $4000</div>
-                    <div>ABV: 5.3%</div>
+                    <div>Precio: - </div>
+                    <div>ABV: - </div>
                     <div class="amargor">
                         <span>Amargor:</span>
                         <span class="pelota">🏀</span>
                         <span class="pelota">🏀</span>
-                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
                         <span class="pelota vacia">🏀</span>
                         <span class="pelota vacia">🏀</span>
                     </div>
