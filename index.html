@@ -129,7 +129,6 @@
 <body>
     <div class="logo-rebote" id="logo-rebote">
         <H1>KIRKEN</H1>
-        <div id="palabra-juego" style="font-size: 3rem; color: white; text-align: center; margin-top: 20px;"></div>
     </div>
     <div class="pizarra">
 
@@ -137,11 +136,11 @@
 
         <div class="columna">
             <div class="cerveza">
-                <div class="nombre" style="border-left-color: #f7d273;">Pilsner</div>
-                <div class="descripcion">Es una típica lager, es limpia (sin aromas que destaquen de la fermentación) y refrescante. Es un poco más amarga que la Blonde pero igual o más ligera.</div>
+                <div class="nombre" style="border-left-color: #f7d273;">Terpenita ⭐</div>
+                <div class="descripcion">Terpenita es nuestra American IPA con terpenos cannábicos agregados. ¿Contiene THC? No, así que no pega, pero los terpenos le aportan aromas y sabores frescos y muy particulares.</div>
                 <div class="info-linea">
-                    <div>Precio: $4000</div>
-                    <div>ABV: 5%</div>
+                    <div>Precio: $4500</div>
+                    <div>ABV: 5.5%</div>
                     <div class="amargor">
                         <span>Amargor:</span>
                         <span class="pelota">🏀</span>
@@ -187,30 +186,30 @@
             </div>
 
             <div class="cerveza">
-                <div class="nombre" style="border-left-color: #e5ff0b;">Sour</div>
+                <div class="nombre" style="border-left-color: #e5ff0b;">American IPA - Astor</div>
                 <div class="descripcion">
-                    Es una birra ácida, pero ácida real, aunque no pierde la tomabilidad y para hacerla mas rica, tiene agregado de mango, guayaba y maracuya.
+                    Birra invitada para el IPA de los famosos y admirados Astor. Una American IPA clasica que no defrauda.
                 </div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
-                    <div>ABV: 3.3%</div>
+                    <div>Precio: $5000</div>
+                    <div>ABV: 6,5%</div>
                     <div class="amargor">
                         <span>Amargor:</span>
-                        <span class="pelota vacia">🏀</span>
-                        <span class="pelota vacia">🏀</span>
-                        <span class="pelota vacia">🏀</span>
-                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
                         <span class="pelota vacia">🏀</span>
                     </div>
                 </div>
             </div>
 
-            <div class="cerveza not-available">
-                <div class="nombre" style="border-left-color: #f8c13e;">Session IPA - No disponible</div>
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #f8c13e;">Session IPA - Metamorfosis</div>
                 <div class="descripcion"> Vas a encontrar sabores parecidos a la American IPA pero con más tomabilidad y menos amargor.
                 </div>
                 <div class="info-linea">
-                    <div>Precio: $4000</div>
+                    <div>Precio: $4500</div>
                     <div>ABV: 4.5%</div>
                     <div class="amargor">
                         <span>Amargor:</span>
@@ -248,7 +247,7 @@
                 <div class="nombre" style="border-left-color: #f1a23b;">NEIPA</div>
                 <div class="descripcion">Mucho menos amargor que una American IPA, pero con mucho aroma y sabor. Lúpulos americanos para armar este jugo de frutas.</div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
+                    <div>Precio: $5000</div>
                     <div>ABV: 6%</div>
                     <div class="amargor">
                         <span>Amargor:</span>
@@ -296,16 +295,16 @@
             </div>
 
             <div class="cerveza">
-                <div class="nombre" style="border-left-color: #3d1f0c;">Porter</div>
-                <div class="descripcion">La birra mas oscura que tenemos. Con todos esos sabores que los amantes de las birras negras buscan pero sin ser fuerte y sin pérdida de tomabilidad. Recomendamos mucho tomarla de postre para cerrar la noche.</div>
+                <div class="nombre" style="border-left-color: #f1a23b;">NZ NEIPA - Metamorfosis</div>
+                <div class="descripcion">Es una NEIPA hecha con lupulos de Nueva Zelanda, con un perfil mas citrico y con mucha tomabilidad.</div>
                 <div class="info-linea">
-                    <div>Precio: $4000</div>
+                    <div>Precio: $5000</div>
                     <div>ABV: 6%</div>
                     <div class="amargor">
                         <span>Amargor:</span>
                         <span class="pelota">🏀</span>
                         <span class="pelota">🏀</span>
-                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota">🏀</span>
                         <span class="pelota vacia">🏀</span>
                         <span class="pelota vacia">🏀</span>
                     </div>
@@ -340,47 +339,6 @@
         }
 
         animate();
-
-        const palabras = [
-            "CEBADA", "LÚPULO", "MARTITA", "FERMENTO", "BIRRA", "RICARDITA", "PLAN DENTAL", "KIRKEN",
-            "ESPUMA", "CUCA", "TRIGO", "IPA", "PASTRY", "NEIPA", "SCOTTISH", "HONEY", "RESACA"
-        ];
-
-        const palabraElemento = document.getElementById('palabra-juego');
-
-        function mostrarPalabra(index) {
-            palabraElemento.textContent = palabras[index];
-            palabraElemento.style.opacity = '1';
-
-            // Ocultar a los 15 segundos
-            setTimeout(() => {
-                palabraElemento.style.opacity = '0';
-            }, 15000);
-        }
-
-        function iniciarJuego() {
-            const ahora = new Date();
-            const hora = ahora.getHours();
-            const minutos = ahora.getMinutes();
-
-            // Verificamos que esté en rango de horario
-            if (hora >= 20 || (hora >= 0 && hora < 1)) {
-                const inicio = new Date();
-                inicio.setHours(20, 0, 0, 0);
-
-                const elapsedMs = ahora - inicio;
-                const elapsedMin = Math.floor(elapsedMs / 60000);
-                const index = Math.floor(elapsedMin / 15);
-
-                if (index >= 0 && index < palabras.length) {
-                    mostrarPalabra(index);
-                }
-            }
-        }
-
-        // Mostrar primero al cargar, y luego cada 15 minutos
-        iniciarJuego();
-        setInterval(iniciarJuego, 900000); // 900000 ms = 15 minutos
     </script>
 </body>
 
