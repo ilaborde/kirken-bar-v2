@@ -55,34 +55,59 @@
             position: relative;
             z-index: 1;
         }
-        /* ======= Tu estilo original ======= */
         
         .pizarra {
-            display: flex;
-            justify-content: space-between;
+            /* antes estaba en flex; ahora es un único grid padre */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* 2 columnas */
+            grid-template-rows: repeat(5, 1fr);
+            /* 5 filas compartidas entre ambas columnas */
+            gap: 10px 20px;
+            /* filas / columnas */
             max-width: 1800px;
             margin: 0 auto;
-            gap: 20px;
         }
+        /* Cada columna hereda las filas del padre */
         
         .columna {
-            flex: 1;
             display: grid;
-            grid-template-rows: repeat(5, auto);
-            gap: 20px;
+            grid-template-rows: subgrid;
+            /* hereda las filas definidas arriba */
+            grid-row: 1 / -1;
+            /* abarca todas las filas del padre */
+            gap: 10px;
+            /* espacio vertical dentro de cada columna */
+        }
+        /* Ubicamos cada columna en su lugar */
+        
+        .columna:first-child {
+            grid-column: 1;
+        }
+        
+        .columna:last-child {
+            grid-column: 2;
+        }
+        /* Que cada tarjeta estire a la altura de su fila compartida */
+        
+        .columna .cerveza {
+            align-self: stretch;
         }
         
         .cerveza {
             border-bottom: 1px solid #fffbfb;
             padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            /* apila verticalmente */
         }
         
         .nombre {
             font-family: 'Bebas Neue', sans-serif;
             color: #fffbfb;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            margin-bottom: 5px;
             padding-left: 12px;
             border-left: 12px solid transparent;
         }
@@ -92,7 +117,7 @@
             color: #fffbfb;
             margin-bottom: 12px;
             padding-left: 12px;
-            min-height: 100px;
+            flex: 1;
         }
         
         .info-linea {
@@ -104,6 +129,7 @@
             font-size: 1.3rem;
             font-weight: 600;
             padding-left: 12px;
+            margin-top: auto;
         }
         
         .amargor {
