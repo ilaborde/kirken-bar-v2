@@ -61,7 +61,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             /* 2 columnas */
-            grid-template-rows: repeat(5, 1fr);
+            grid-template-rows: repeat(6, 1fr);
             /* 5 filas compartidas entre ambas columnas */
             gap: 10px 20px;
             /* filas / columnas */
@@ -105,7 +105,7 @@
         .nombre {
             font-family: 'Bebas Neue', sans-serif;
             color: #fffbfb;
-            font-size: 3.5rem;
+            font-size: 4rem;
             letter-spacing: 8px;
             margin-bottom: 5px;
             padding-left: 12px;
@@ -203,8 +203,7 @@
         <!-- Columna izquierda: suaves / claras -->
         <div class="columna">
             <div class="cerveza">
-                <div class="nombre" style="border-left-color: #f7d273;">Terpenita - IPA Cannabica⭐</div>
-                <div class="descripcion">Terpenita es nuestra American IPA con terpenos cannábicos. ¿Contiene THC? No, así que no pega. Pero los terpenos aportan aromas y sabores frescos, intensos y muy distintos una IPA comun.</div>
+                <div class="nombre" style="border-left-color: #f7d273;">Terpenita - IPA Cannabica</div>
                 <div class="info-linea">
                     <div>Precio: $5000</div>
                     <div>ABV: 5.5%</div>
@@ -221,7 +220,6 @@
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #e9ac0c;">Blonde</div>
-                <div class="descripcion"> Es la rubia artesanal clásica, fácil de tomar, refrescante y sin sabores fuertes. Vas a notar principalmente los sabores de la cebada malteada.</div>
                 <div class="info-linea">
                     <div>Precio: $4000</div>
                     <div>ABV: 4.8%</div>
@@ -238,7 +236,6 @@
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #e0250d;">Red Honey</div>
-                <div class="descripcion"> Nuestra Scottish de siempre, pero con un toque de miel para darle notas dulces extra.</div>
                 <div class="info-linea">
                     <div>Precio: $4000</div>
                     <div>ABV: 6.5%</div>
@@ -255,7 +252,6 @@
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #cf3780;">Viaje Cosmico - Sour</div>
-                <div class="descripcion">Un capítulo aparte en el paladar: ácida y refrescante. Mucha frambuesa, pitaya, mango y ananá para equilibrar la acidez de esta puerta de entrada a las birras ácidas.</div>
                 <div class="info-linea">
                     <div>Precio: $4500</div>
                     <div>ABV: 5,0%</div>
@@ -272,9 +268,6 @@
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #bd6812;">IPA Argenta</div>
-                <div class="descripcion">
-                    IPA con acento local, hecha con lúpulos argentinos (principalmente del Bolsón). Resultado: sabores cítricos con un toque tropical y un amargor bien copado.
-                </div>
                 <div class="info-linea">
                     <div>Precio: $4500</div>
                     <div>ABV: 5.5%</div>
@@ -288,14 +281,27 @@
                     </div>
                 </div>
             </div>
-
+            <div class="cerveza">
+                <div class="nombre" style="border-left-color: #ce480e;">Vienna Lager</div>
+                <div class="info-linea">
+                    <div>Precio: $4000</div>
+                    <div>ABV: 5.5%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="columna">
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #3d1f0c;">Pastry Porter</div>
-                <div class="descripcion">Postre líquido: Porter con cacao, café y lactosa. No es una negra clásica, es otra cosa. Probá y nos contás.</div>
                 <div class="info-linea">
                     <div>Precio: $4000 </div>
                     <div>ABV: 8.5% </div>
@@ -312,7 +318,6 @@
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #f1a23b;">NEIPA</div>
-                <div class="descripcion">Mucho menos amargor que una American IPA, pero con mucho aroma y sabor. Lúpulos americanos para armar este jugo de frutas.</div>
                 <div class="info-linea">
                     <div>Precio: $5000</div>
                     <div>ABV: 6%</div>
@@ -328,9 +333,8 @@
             </div>
 
             <div class="cerveza">
-                <div class="nombre" style="border-left-color: #d1960e;">West coast IPL</div>
-                <div class="descripcion">Una India Pale Lager con alma West Coast: limpia, seca y lupulada. Cuerpo liviano, amargor firme y aroma resinoso con notas cítricas y tropicales. - Invitada Zombiecat
-                </div>
+                <div class="nombre" style="border-left-color: #d1960e;">West coast IPL - Zombiecat</div>
+
                 <div class="info-linea">
                     <div>Precio: $5000</div>
                     <div>ABV: 6.3%</div>
@@ -347,7 +351,6 @@
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #9b111e;">Scottish</div>
-                <div class="descripcion">Maltas caramelizadas para obtener sabores típicos a caramelo, colores más oscuros y final dulce. Podes encontrar notas tostadas y algo de frutos secos (principalmente almendras).</div>
                 <div class="info-linea">
                     <div>Precio: $4000</div>
                     <div>ABV: 6%</div>
@@ -364,9 +367,6 @@
 
             <div class="cerveza">
                 <div class="nombre" style="border-left-color: #f1a23b;">Munich Helles</div>
-                <div class="descripcion">
-                    La típica rubia alemana: clara, suave y refrescante. Es lo más parecido a una birra industrial que tenemos (pero bien hecha).
-                </div>
                 <div class="info-linea">
                     <div>Precio: $4000</div>
                     <div>ABV: 4,5%</div>
@@ -380,7 +380,21 @@
                     </div>
                 </div>
             </div>
-
+            <div class="cerveza proximamente">
+                <div class="nombre" style="border-left-color: #f1a23b;">Hazy IPA - proximamente ⭐</div>
+                <div class="info-linea">
+                    <div>Precio: $4500</div>
+                    <div>ABV: 5,6%</div>
+                    <div class="amargor">
+                        <span>Amargor:</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                        <span class="pelota vacia">🏀</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
