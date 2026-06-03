@@ -1,14 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>Pizarra de Cervezas - Kirken</title>
-
     <!-- Fuentes: Bebas Neue + Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet" />
     <style>
          :root {
             --grass-top: #6dbb63;
@@ -51,7 +50,7 @@
             inset: 20px 26px;
             z-index: 0;
             pointer-events: none;
-            opacity: .74;
+            opacity: .52;
             border: 4px solid var(--field-line-soft);
         }
         
@@ -126,12 +125,12 @@
             display: none;
         }
         
-        .pizarra::before {
+        .pizarra::after {
             content: "★★★";
             grid-column: 1 / -1;
-            align-self: center;
             justify-self: center;
-            margin: -6px 0 -7px;
+            align-self: center;
+            margin: 6px 0 0;
             color: var(--arg-gold);
             font-size: 1.18rem;
             letter-spacing: 15px;
@@ -148,7 +147,7 @@
             z-index: 1;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto repeat(6, 1fr);
+            grid-template-rows: repeat(6, 1fr) auto;
             gap: 7px 22px;
             max-width: 1800px;
             margin: 0 auto;
@@ -157,7 +156,7 @@
         .columna {
             display: grid;
             grid-template-rows: subgrid;
-            grid-row: 2 / -1;
+            grid-row: 1 / span 6;
             gap: 7px;
         }
         
@@ -174,21 +173,32 @@
         }
         
         .cerveza {
+            position: relative;
             border-bottom: 1px solid var(--beer-line);
             padding-bottom: 12px;
+            padding-left: 24px;
             display: flex;
             flex-direction: column;
+        }
+        
+        .cerveza::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 10px;
+            width: 12px;
+            background: var(--beer-color, transparent);
+            border-radius: 2px;
         }
         
         .nombre {
             font-family: 'Bebas Neue', sans-serif;
             color: var(--arg-white);
-            font-size: 3.32rem;
+            font-size: 4rem;
             line-height: .98;
             letter-spacing: 7px;
-            margin-bottom: 4px;
-            padding-left: 12px;
-            border-left: 12px solid transparent;
+            margin-bottom: 6px;
             text-shadow: 0 3px 5px var(--text-shadow), 0 0 1px rgba(0, 0, 0, .85);
         }
         
@@ -199,8 +209,6 @@
             line-height: 1;
             letter-spacing: 6px;
             margin-bottom: 4px;
-            padding-left: 12px;
-            border-left: 12px solid transparent;
             text-shadow: 0 2px 4px var(--text-shadow);
         }
         
@@ -208,7 +216,7 @@
             font-size: 1.12rem;
             color: var(--arg-white);
             margin-bottom: 10px;
-            padding-left: 12px;
+            padding-left: 0;
             flex: 1;
             text-shadow: 0 2px 3px var(--text-shadow);
         }
@@ -221,7 +229,7 @@
             gap: 30px;
             font-size: 1.15rem;
             font-weight: 700;
-            padding-left: 12px;
+            padding-left: 0;
             margin-top: auto;
             text-shadow: 0 2px 4px var(--text-shadow), 0 0 1px rgba(0, 0, 0, .9);
         }
@@ -288,28 +296,24 @@
             position: relative;
         }
     </style>
-
 </head>
 
 <body>
     <!-- Fondo cancha -->
-    <div class="field-lines" aria-hidden="true"></div>
-    <div class="area-left" aria-hidden="true"></div>
-    <div class="area-right" aria-hidden="true"></div>
-    <div class="small-area-left" aria-hidden="true"></div>
-    <div class="small-area-right" aria-hidden="true"></div>
-    <div class="texture-scribbles" aria-hidden="true"></div>
-
+    <div aria-hidden="true" class="field-lines"></div>
+    <div aria-hidden="true" class="area-left"></div>
+    <div aria-hidden="true" class="area-right"></div>
+    <div aria-hidden="true" class="small-area-left"></div>
+    <div aria-hidden="true" class="small-area-right"></div>
+    <div aria-hidden="true" class="texture-scribbles"></div>
     <!-- <div class="logo-rebote" id="logo-rebote">
         <h1>KIRKEN</h1>
     </div> -->
-
     <div class="pizarra">
-
         <!-- Columna izquierda: suaves / claras -->
         <div class="columna">
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #f7d273;">American IPA</div>
+            <div class="cerveza" style="--beer-color: #f7d273;">
+                <div class="nombre">American IPA</div>
                 <div class="sub-name">(Ekuanot, Strata, Simcoe)</div>
                 <div class="info-linea">
                     <div>Precio: $5000</div>
@@ -324,9 +328,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #e9ac0c;">Blonde</div>
+            <div class="cerveza" style="--beer-color: #e9ac0c;">
+                <div class="nombre">Blonde</div>
                 <div class="info-linea">
                     <div>Precio: $4500</div>
                     <div>ABV: 4.8%</div>
@@ -340,9 +343,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #e0610d;">Honey</div>
+            <div class="cerveza" style="--beer-color: #e0610d;">
+                <div class="nombre">Honey</div>
                 <div class="info-linea">
                     <div>Precio: $4500</div>
                     <div>ABV: 6.5%</div>
@@ -356,9 +358,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #dfa82a;">ABERRANTE - NEIPA</div>
+            <div class="cerveza" style="--beer-color: #dfa82a;">
+                <div class="nombre">ABERRANTE - NEIPA</div>
                 <div class="sub-name">(Mosaic, citra y talus)</div>
                 <div class="info-linea">
                     <div>Precio: $6000</div>
@@ -373,9 +374,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #cdbc0a;">Si queres me voy</div>
+            <div class="cerveza" style="--beer-color: #cdbc0a;">
+                <div class="nombre">Si queres me voy</div>
                 <div class="sub-name">(Mexican lager)</div>
                 <div class="info-linea">
                     <div>Precio: $4500</div>
@@ -390,8 +390,8 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #410202;">El tano sabe - SANTINA</div>
+            <div class="cerveza" style="--beer-color: #410202;">
+                <div class="nombre">El tano sabe - SANTINA</div>
                 <div class="sub-name">(Cerveza ahumada)</div>
                 <div class="info-linea">
                     <div>Precio: $5000</div>
@@ -407,10 +407,9 @@
                 </div>
             </div>
         </div>
-
-        <div class="columna ">
-            <div class="cerveza not-available">
-                <div class="nombre" style="border-left-color: #c6810a;">Session IPA</div>
+        <div class="columna">
+            <div class="cerveza not-available" style="--beer-color: #c6810a;">
+                <div class="nombre">Session IPA</div>
                 <div class="sub-name">(Invitada S'obvio)</div>
                 <div class="info-linea">
                     <div>Precio: $5000 </div>
@@ -425,9 +424,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza not-available">
-                <div class="nombre" style="border-left-color: #f1a23b;">Gose - Jabalina</div>
+            <div class="cerveza not-available" style="--beer-color: #f1a23b;">
+                <div class="nombre">Gose - Jabalina</div>
                 <div class="sub-name">(Mango, lima, ají Cayena y un toque de sal)</div>
                 <div class="info-linea">
                     <div>Precio: $5500</div>
@@ -442,9 +440,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #cb0a41;">Viaje Cosmico - Sour</div>
+            <div class="cerveza" style="--beer-color: #cb0a41;">
+                <div class="nombre">Viaje Cosmico - Sour</div>
                 <div class="sub-name">(Maracuya, mango y frutos rojos)</div>
                 <div class="info-linea">
                     <div>Precio: $5000</div>
@@ -459,9 +456,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #752407;">Scottish</div>
+            <div class="cerveza" style="--beer-color: #752407;">
+                <div class="nombre">Scottish</div>
                 <div class="info-linea">
                     <div>Precio: $4500</div>
                     <div>ABV: 4,5%</div>
@@ -475,9 +471,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cerveza">
-                <div class="nombre" style="border-left-color: #191817;">English Porter</div>
+            <div class="cerveza" style="--beer-color: #191817;">
+                <div class="nombre">English Porter</div>
                 <div class="info-linea">
                     <div>Precio: $4500</div>
                     <div>ABV: 5%</div>
@@ -491,23 +486,22 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza proximamente">
-                <div class=" nombre " style="border-left-color: #f1a23b; ">Soy Romantico - proximamente</div>
-                <div class="info-linea ">
+            <div class="cerveza proximamente" style="--beer-color: #f1a23b;">
+                <div class="nombre">Soy Romantico - proximamente</div>
+                <div class="info-linea">
                     <div>Precio: $5500</div>
                     <div>ABV: 5,8%</div>
-                    <div class="amargor ">
+                    <div class="amargor">
                         <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
-                        <span class="pelota vacia ">⚽</span>
-                        <span class="pelota vacia ">⚽</span>
+                        <span class="pelota vacia">⚽</span>
+                        <span class="pelota vacia">⚽</span>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <!-- <script>
         const logo = document.getElementById('logo-rebote');
