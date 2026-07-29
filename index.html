@@ -5,332 +5,434 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Pizarra de Cervezas - Kirken</title>
+    <title>Pizarra Kirken — Edición Azul</title>
     <!-- Fuentes: Bebas Neue + Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
          :root {
-            --grass-top: #6dbb63;
-            --grass-mid: #5ead54;
-            --grass-deep: #3f8f3f;
-            --arg-white: #fffdf6;
-            --arg-gold: #f3c64e;
-            --field-line-soft: rgba(255, 255, 255, .20);
-            --text-shadow: rgba(4, 34, 14, .78);
-            --beer-line: rgba(255, 255, 255, .42);
+            --blue: #1267a8;
+            --blue-deep: #07558f;
+            --blue-soft: #2d7fb8;
+            --aqua: #65c7c2;
+            --yellow: #ffb400;
+            --orange: #f06b32;
+            --ink: #0a1823;
+            --paper: #fffdf7;
+            --line: rgba(255, 255, 255, .34);
         }
         
         * {
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+        
+        html,
+        body {
+            width: 100%;
+            height: 100%
         }
         
         body {
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--arg-white);
-            padding: 16px 20px;
-            overflow: hidden;
-            position: relative;
             min-height: 100vh;
-            background: radial-gradient(circle at 50% 46%, rgba(255, 255, 255, .10), transparent 33%), repeating-linear-gradient(90deg, rgba(255, 255, 255, .045) 0, rgba(255, 255, 255, .045) 86px, rgba(0, 0, 0, .035) 86px, rgba(0, 0, 0, .035) 172px), linear-gradient(180deg, var(--grass-top) 0%, var(--grass-mid) 46%, var(--grass-deep) 100%);
+            overflow: hidden;
+            color: var(--paper);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blue);
+            position: relative;
         }
         
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            z-index: 0;
             pointer-events: none;
-            background: linear-gradient(90deg, rgba(0, 38, 14, .22), transparent 18%, transparent 82%, rgba(0, 38, 14, .22)), linear-gradient(180deg, rgba(0, 35, 12, .13), transparent 20%, transparent 76%, rgba(0, 35, 12, .18)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cg stroke='%23ffffff' stroke-opacity='.08' stroke-width='1'%3E%3Cpath d='M4 12l18 6M32 4l9 20M58 10l22 4M11 43l27-8M49 47l28 10M19 77l20-12M61 76l14-21M4 62l11 14M78 30l9 19'/%3E%3C/g%3E%3C/svg%3E");
-            opacity: .95;
+            background: radial-gradient(circle at 16% 15%, rgba(255, 255, 255, .07), transparent 24%), linear-gradient(165deg, transparent 0 59%, rgba(5, 71, 120, .42) 59.2% 69%, transparent 69.2%), linear-gradient(15deg, transparent 0 76%, rgba(64, 145, 197, .25) 76.2% 86%, transparent 86.2%);
+            z-index: 0;
         }
         
-        .field-lines {
+        .brand-head {
             position: fixed;
-            inset: 20px 26px;
-            z-index: 0;
+            left: 32px;
+            right: 32px;
+            top: 20px;
+            height: 88px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            z-index: 4;
             pointer-events: none;
-            opacity: .52;
-            border: 4px solid var(--field-line-soft);
         }
         
-        .field-lines::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 4px;
-            transform: translateX(-50%);
-            background: var(--field-line-soft);
+        .brand-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 4.6rem;
+            line-height: .82;
+            letter-spacing: -.065em;
+            text-transform: uppercase;
         }
         
-        .field-lines::after {
-            content: "";
-            position: absolute;
-            width: 265px;
-            height: 265px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border: 4px solid var(--field-line-soft);
-            border-radius: 50%;
+        .brand-title span {
+            display: block;
+            color: var(--yellow)
         }
         
-        .area-left,
-        .area-right {
-            position: fixed;
-            top: 28%;
-            width: 132px;
-            height: 44%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: .68;
-            border: 4px solid var(--field-line-soft);
-        }
-        
-        .area-left {
-            left: 26px;
-            border-left: 0;
-        }
-        
-        .area-right {
-            right: 26px;
-            border-right: 0;
-        }
-        
-        .small-area-left,
-        .small-area-right {
-            position: fixed;
-            top: 38%;
-            width: 58px;
-            height: 24%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: .62;
-            border: 4px solid var(--field-line-soft);
-        }
-        
-        .small-area-left {
-            left: 26px;
-            border-left: 0;
-        }
-        
-        .small-area-right {
-            right: 26px;
-            border-right: 0;
-        }
-        
-        .texture-scribbles {
-            display: none;
-        }
-        
-        .promo-partido {
-            grid-column: 1 / -1;
-            justify-self: center;
-            text-align: center;
-            margin: 10px 0 0;
+        .brand-meta {
+            text-align: right;
+            font-size: .92rem;
             font-weight: 700;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, .45);
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            padding-top: 7px;
         }
         
-        .promo-partido .mensaje {
-            color: var(--arg-white);
-            font-size: 1.45rem;
-            line-height: 1.35;
+        .brand-meta strong {
+            display: block;
+            font-size: 1.2rem;
+            letter-spacing: .08em;
+            color: var(--aqua);
+            margin-bottom: 4px
         }
         
-        .promo-partido .estrellas {
-            color: var(--arg-gold);
-            font-size: 1.18rem;
-            letter-spacing: 15px;
-            margin-top: 8px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, .38);
-        }
-        
-        .app {
-            position: relative;
+        .decor {
+            position: fixed;
+            inset: 0;
             z-index: 1;
+            pointer-events: none;
+            overflow: hidden
+        }
+        
+        .shape-a {
+            position: absolute;
+            width: 390px;
+            height: 120px;
+            left: -70px;
+            top: 130px;
+            background: var(--aqua);
+            border-radius: 55% 45% 10% 10%/70% 50% 25% 30%;
+            transform: rotate(-2deg);
+            opacity: .96
+        }
+        
+        .shape-b {
+            position: absolute;
+            width: 210px;
+            height: 56px;
+            left: 8px;
+            top: 272px;
+            background: var(--aqua);
+            border-radius: 8px 38px 8px 28px;
+            transform: rotate(4deg)
+        }
+        
+        .shape-c {
+            position: absolute;
+            width: 360px;
+            height: 175px;
+            right: -88px;
+            top: 0;
+            background: #72d0cb;
+            clip-path: polygon(45% 0, 100% 0, 100% 100%, 0 100%, 0 52%)
+        }
+        
+        .shape-d {
+            position: absolute;
+            width: 420px;
+            height: 105px;
+            right: -100px;
+            bottom: 70px;
+            background: rgba(0, 52, 91, .22);
+            border: 22px solid rgba(0, 52, 91, .24);
+            border-radius: 90px;
+            transform: rotate(-7deg)
+        }
+        
+        .doodle {
+            position: absolute;
+            fill: none;
+            stroke: #08141d;
+            stroke-width: 14;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+        
+        .doodle.one {
+            right: 32px;
+            top: 22px;
+            width: 330px;
+            height: 190px;
+            transform: rotate(4deg)
+        }
+        
+        .doodle.two {
+            left: 42%;
+            bottom: 7px;
+            width: 280px;
+            height: 135px;
+            opacity: .75
+        }
+        
+        .crown {
+            position: absolute;
+            right: 25px;
+            bottom: 12px;
+            width: 112px;
+            height: 100px;
+            fill: none;
+            stroke: var(--orange);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: rotate(-8deg)
         }
         
         .pizarra {
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            padding: 34px 34px 34px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(6, 1fr) auto;
-            gap: 7px 22px;
-            max-width: 1800px;
-            margin: 0 auto;
+            grid-template-rows: 1fr;
+            gap: 12px 54px;
         }
         
         .columna {
+            min-width: 0;
             display: grid;
-            grid-template-rows: subgrid;
-            grid-row: 1 / span 6;
-            gap: 7px;
-        }
-        
-        .columna:first-child {
-            grid-column: 1;
-        }
-        
-        .columna:last-child {
-            grid-column: 2;
-        }
-        
-        .columna .cerveza {
-            align-self: stretch;
+            grid-template-rows: repeat(6, minmax(0, 1fr));
+            gap: 8px;
         }
         
         .cerveza {
             position: relative;
-            border-bottom: 1px solid var(--beer-line);
-            padding-bottom: 12px;
-            padding-left: 24px;
-            display: flex;
-            flex-direction: column;
+            min-width: 0;
+            display: grid;
+            grid-template-columns: 56px minmax(0, 1fr) auto;
+            grid-template-rows: auto auto;
+            align-content: center;
+            column-gap: 14px;
+            padding: 12px 0 13px;
+            border-bottom: 1px solid var(--line);
         }
         
         .cerveza::before {
+            content: attr(data-index);
+            grid-row: 1/3;
+            align-self: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.45rem;
+            line-height: 1;
+            letter-spacing: -.08em;
+            color: rgba(255, 255, 255, .60);
+        }
+        
+        .cerveza::after {
             content: "";
             position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 10px;
-            width: 12px;
-            background: var(--beer-color, transparent);
-            border-radius: 2px;
+            left: 47px;
+            top: 16%;
+            bottom: 16%;
+            width: 5px;
+            background: var(--beer-color);
+            border-radius: 9px;
         }
         
         .nombre {
-            font-family: 'Bebas Neue', sans-serif;
-            color: var(--arg-white);
-            font-size: 4rem;
-            line-height: .98;
-            letter-spacing: 7px;
-            margin-bottom: 6px;
-            text-shadow: 0 3px 5px var(--text-shadow), 0 0 1px rgba(0, 0, 0, .85);
+            grid-column: 2;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.5rem, 2.18vw, 2.7rem);
+            line-height: .96;
+            letter-spacing: -.045em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .sub-name {
-            font-family: 'Bebas Neue', sans-serif;
-            color: rgba(255, 253, 246, .94);
-            font-size: 1.62rem;
-            line-height: 1;
-            letter-spacing: 6px;
-            margin-bottom: 4px;
-            text-shadow: 0 2px 4px var(--text-shadow);
-        }
-        
-        .descripcion {
-            font-size: 1.12rem;
-            color: var(--arg-white);
-            margin-bottom: 10px;
-            padding-left: 0;
-            flex: 1;
-            text-shadow: 0 2px 3px var(--text-shadow);
+            grid-column: 2;
+            font-size: clamp(.72rem, .88vw, 1rem);
+            line-height: 1.05;
+            opacity: .88;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 5px;
         }
         
         .info-linea {
-            display: flex;
-            color: var(--arg-white);
-            justify-content: flex-start;
+            grid-column: 3;
+            grid-row: 1/3;
+            align-self: center;
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 2px 18px;
             align-items: center;
-            gap: 30px;
-            font-size: 1.15rem;
+            justify-items: end;
+            font-size: clamp(.72rem, .82vw, .95rem);
             font-weight: 700;
-            padding-left: 0;
-            margin-top: auto;
-            text-shadow: 0 2px 4px var(--text-shadow), 0 0 1px rgba(0, 0, 0, .9);
-        }
-        
-        .amargor {
-            display: flex;
-            align-items: center;
-            gap: 7px;
             white-space: nowrap;
         }
         
-        .amargor span {
-            font-weight: 700;
+        .info-linea>div:first-child {
+            font-size: clamp(1.05rem, 1.25vw, 1.45rem);
+            color: var(--yellow)
         }
         
-        .pelota {
-            font-size: 1.46rem;
-            line-height: 1;
+        .amargor {
+            grid-column: 1/3;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .68rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            opacity: .94
+        }
+        
+        .amargor .pelota {
+            width: 10px;
+            height: 10px;
             display: inline-block;
-            transform: translateY(1px);
-            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .75)) drop-shadow(0 0 2px rgba(255, 255, 255, .45));
+            font-size: 0;
+            border-radius: 50%;
+            background: var(--paper);
+            box-shadow: none;
+            filter: none;
+            transform: none;
         }
         
-        .pelota.vacia {
-            opacity: .36;
-            filter: grayscale(1) brightness(1.25) drop-shadow(0 2px 2px rgba(0, 0, 0, .65));
-        }
-        
-        .logo-rebote {
-            position: absolute;
-            top: 100px;
-            left: 100px;
-            width: 300px;
-            opacity: 0.3;
-            z-index: 1;
-        }
-        
-        .logo-rebote h1 {
-            font-size: 4em;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: var(--arg-white);
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-        
-        @keyframes blink {
-            0% {
-                opacity: 1
-            }
-            50% {
-                opacity: .45
-            }
-            100% {
-                opacity: 1
-            }
-        }
-        
-        .cerveza.proximamente .nombre {
-            animation: blink 1.5s infinite;
+        .amargor .pelota.vacia {
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, .72);
+            opacity: 1;
+            filter: none
         }
         
         .cerveza.not-available {
-            opacity: .48;
-            position: relative;
+            opacity: .42
+        }
+        
+        .cerveza.not-available .nombre {
+            text-decoration: line-through;
+            text-decoration-thickness: 2px
+        }
+        
+        .cerveza.not-available::after {
+            background: rgba(255, 255, 255, .55)
+        }
+        
+        .cerveza.proximamente .nombre {
+            color: var(--yellow);
+            animation: pulse 1.8s ease-in-out infinite
+        }
+        
+        @keyframes pulse {
+            50% {
+                opacity: .58
+            }
+        }
+        
+        .promo-partido {
+            grid-column: 1/-1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2px;
+            text-transform: uppercase;
+        }
+        
+        .promo-partido .mensaje {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: -.02em;
+        }
+        
+        .promo-partido .mensaje::before {
+            content: "KIRKEN DICE: ";
+            color: var(--yellow)
+        }
+        
+        .promo-partido .estrellas {
+            font-size: 0
+        }
+        
+        .promo-partido .estrellas::after {
+            content: "CERVEZA DE FÁBRICA  •  QUILMES";
+            font-size: .8rem;
+            letter-spacing: .18em;
+            font-weight: 700;
+            color: var(--aqua)
+        }
+        
+        .brand-head,
+        .promo-partido {
+            display: none!important
+        }
+        
+        .amargor {
+            grid-column: 1/3
+        }
+        
+        @media(max-width:1100px) {
+            body {
+                overflow: auto
+            }
+            .brand-head {
+                position: absolute
+            }
+            .pizarra {
+                height: auto;
+                min-height: 100vh;
+                grid-template-columns: 1fr;
+                padding: 28px
+            }
+            .promo-partido {
+                grid-column: 1;
+                gap: 12px;
+                align-items: flex-start;
+                flex-direction: column
+            }
+            .nombre {
+                white-space: normal
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <div aria-hidden="true" class="decor">
+        <div class="shape-a"></div>
+        <div class="shape-b"></div>
+        <div class="shape-c"></div>
+        <div class="shape-d"></div>
+        <svg class="doodle one" viewbox="0 0 330 190"><path d="M25 15c-18 52 6 70 65 64s110-3 95 31-70 47-42 64c30 19 98-4 158-1"></path></svg>
+        <svg class="doodle two" viewbox="0 0 280 135"><path d="M8 93c55-85 79-42 107-10 32 37 69 34 154-54"></path></svg>
+        <svg class="crown" viewbox="0 0 120 110"><path d="M13 91L7 32l33 27L59 9l23 49 31-31-8 67z"></path></svg>
+    </div>
+
     <!-- Fondo cancha -->
-    <div aria-hidden="true" class="field-lines"></div>
-    <div aria-hidden="true" class="area-left"></div>
-    <div aria-hidden="true" class="area-right"></div>
-    <div aria-hidden="true" class="small-area-left"></div>
-    <div aria-hidden="true" class="small-area-right"></div>
-    <div aria-hidden="true" class="texture-scribbles"></div>
+
+
+
+
+
+
     <!-- <div class="logo-rebote" id="logo-rebote">
         <h1>KIRKEN</h1>
     </div> -->
     <div class="pizarra">
         <!-- Columna izquierda: suaves / claras -->
         <div class="columna">
-            <div class="cerveza" style="--beer-color: #f7d273;">
+            <div class="cerveza" data-index="01" style="--beer-color: #f7d273;">
                 <div class="nombre">American IPA</div>
                 <div class="sub-name">(Ekuanot, Strata, Simcoe)</div>
                 <div class="info-linea">
-                    <div>Precio: $5000</div>
-                    <div>ABV: 5.5%</div>
+                    <div>$5000</div>
+                    <div>5.5%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
@@ -339,13 +441,12 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #e9ac0c;">
+            <div class="cerveza" data-index="02" style="--beer-color: #e9ac0c;">
                 <div class="nombre">Blonde</div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
-                    <div>ABV: 4.8%</div>
+                    <div>$4500</div>
+                    <div>4.8%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -354,13 +455,12 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #e0610d;">
+            <div class="cerveza" data-index="03" style="--beer-color: #e0610d;">
                 <div class="nombre">Honey</div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
-                    <div>ABV: 6.5%</div>
+                    <div>$4500</div>
+                    <div>6.5%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -369,14 +469,13 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #dfa82a;">
+            <div class="cerveza" data-index="04" style="--beer-color: #dfa82a;">
                 <div class="nombre">ABERRANTE - NEIPA</div>
                 <div class="sub-name">(Mosaic, citra y talus)</div>
                 <div class="info-linea">
-                    <div>Precio: $6000</div>
-                    <div>ABV: 6.8%</div>
+                    <div>$6000</div>
+                    <div>6.8%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -385,30 +484,28 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #cdbc0a;">
-                <div class="nombre">Si queres me voy</div>
-                <div class="sub-name">(Mexican lager)</div>
+            <div class="cerveza" data-index="05" style="--beer-color: #cd4b0a;">
+                <div class="nombre">Dubbel</div>
+                <div class="sub-name">Invitada cerveceria Kankunapa</div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
-                    <div>ABV: 5.5%</div>
+                    <div>$4500</div>
+                    <div>6.7%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
-                        <span class="pelota vacia">⚽</span>
+                        <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #191817;">
+            <div class="cerveza" data-index="06" style="--beer-color: #191817;">
                 <div class="nombre">CASI FRANUÍ</div>
                 <div class="sub-name">(Porter con frambuesas)</div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
-                    <div>ABV: 5%</div>
+                    <div>$4500</div>
+                    <div>5%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -419,30 +516,28 @@
             </div>
         </div>
         <div class="columna">
-            <div class="cerveza not-available" style="--beer-color: #dbdf04;">
+            <div class="cerveza not-available" data-index="07" style="--beer-color: #dbdf04;">
                 <div class="nombre">TAREA FINA - NO DISPONIBLE</div>
                 <div class="sub-name">(Victoria y patagonia red)</div>
                 <div class="info-linea">
-                    <div>Precio: $5000 </div>
-                    <div>ABV: 4,8% </div>
+                    <div>$5000</div>
+                    <div>4,8%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
-                        <span class="pelota ">⚽</span>
+                        <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
                     </div>
                 </div>
             </div>
-            <div class="cerveza not-available" style="--beer-color: #f1a23b;">
+            <div class="cerveza not-available" data-index="08" style="--beer-color: #f1a23b;">
                 <div class="nombre">Gose - Jabalina</div>
                 <div class="sub-name">(Mango, lima, ají Cayena y un toque de sal)</div>
                 <div class="info-linea">
-                    <div>Precio: $5500</div>
-                    <div>ABV: 4%</div>
+                    <div>$5500</div>
+                    <div>4%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -451,14 +546,13 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #cb0a41;">
+            <div class="cerveza" data-index="09" style="--beer-color: #cb0a41;">
                 <div class="nombre">Viaje Cosmico - Sour</div>
-                <div class="sub-name">(Maracuya, mango y frutos rojos)</div>
+                <div class="sub-name">(Grosellas, frutos rojos y lima)</div>
                 <div class="info-linea">
-                    <div>Precio: $5000</div>
-                    <div>ABV: 5,2%</div>
+                    <div>$5000</div>
+                    <div>5,2%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -467,13 +561,12 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #752407;">
+            <div class="cerveza" data-index="10" style="--beer-color: #752407;">
                 <div class="nombre">Scottish</div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
-                    <div>ABV: 4,5%</div>
+                    <div>$4500</div>
+                    <div>4,5%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -482,13 +575,12 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza" style="--beer-color: #191817;">
+            <div class="cerveza" data-index="11" style="--beer-color: #191817;">
                 <div class="nombre">English Porter</div>
                 <div class="info-linea">
-                    <div>Precio: $4500</div>
-                    <div>ABV: 5%</div>
+                    <div>$4500</div>
+                    <div>5%</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota vacia">⚽</span>
@@ -497,13 +589,12 @@
                     </div>
                 </div>
             </div>
-            <div class="cerveza proximamente" style="--beer-color: #f1a23b;">
+            <div class="cerveza proximamente" data-index="12" style="--beer-color: #f1a23b;">
                 <div class="nombre">DOBLE IPA - proximamente</div>
                 <div class="info-linea">
-                    <div>Precio: - </div>
-                    <div>ABV: -</div>
+                    <div>-</div>
+                    <div>-</div>
                     <div class="amargor">
-                        <span>Amargor:</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
                         <span class="pelota">⚽</span>
@@ -512,11 +603,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="promo-partido">
-            <div class="mensaje">Si podes leer esto no estas tan ebrio, o si?</div>
-
-            <div class="estrellas">★★★</div>
         </div>
     </div>
     <!-- <script>
