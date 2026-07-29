@@ -4,16 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pizarra Kirken — Rotativa 50 pulgadas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Pizarra Kirken — Menú + mensajes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
          :root {
             --blue: #1267a8;
-            --blue-deep: #07558f;
+            --blue-dark: #0b5a98;
             --aqua: #65c7c2;
-            --yellow: #ffb400;
+            --yellow: #ffba08;
             --orange: #f06b32;
-            --ink: #08141d;
+            --ink: #07131d;
             --paper: #fffdf7;
         }
         
@@ -40,7 +40,7 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            background: radial-gradient(circle at 14% 16%, rgba(255, 255, 255, .07), transparent 25%), linear-gradient(165deg, transparent 0 61%, rgba(5, 71, 120, .38) 61.2% 72%, transparent 72.2%);
+            background: radial-gradient(circle at 18% 12%, rgba(255, 255, 255, .065), transparent 28%);
         }
         
         .decor {
@@ -53,95 +53,92 @@
         
         .shape-a {
             position: absolute;
-            width: 290px;
-            height: 90px;
-            left: -65px;
-            top: 65px;
+            width: 250px;
+            height: 68px;
+            left: -45px;
+            top: 34px;
             background: var(--aqua);
-            border-radius: 55% 45% 10% 10%/70% 50% 25% 30%;
-            transform: rotate(-5deg)
+            border-radius: 55% 45% 12% 18%;
+            transform: rotate(-4deg)
         }
         
         .shape-b {
             position: absolute;
-            width: 310px;
-            height: 145px;
+            width: 255px;
+            height: 115px;
             right: -90px;
             bottom: -25px;
             background: #72d0cb;
-            border-radius: 55% 0 0 0
+            border-radius: 58% 0 0 0
         }
         
         .doodle {
             position: absolute;
             fill: none;
             stroke: var(--ink);
-            stroke-width: 13;
+            stroke-width: 11;
             stroke-linecap: round;
             stroke-linejoin: round
         }
         
         .doodle.one {
-            right: 28px;
-            top: 18px;
-            width: 250px;
-            height: 140px
+            right: 20px;
+            top: 15px;
+            width: 205px;
+            height: 118px
         }
         
         .doodle.two {
-            left: 12px;
-            bottom: 6px;
-            width: 260px;
-            height: 120px;
+            left: 6px;
+            bottom: 0;
+            width: 220px;
+            height: 95px;
             opacity: .8
         }
         
         .crown {
             position: absolute;
-            right: 24px;
-            bottom: 22px;
-            width: 100px;
-            height: 90px;
+            right: 20px;
+            bottom: 18px;
+            width: 82px;
+            height: 74px;
             fill: none;
             stroke: var(--orange);
-            stroke-width: 8;
+            stroke-width: 7;
             stroke-linecap: round;
             stroke-linejoin: round;
             transform: rotate(-7deg)
         }
         
-        .viewport {
+        .stage {
             position: relative;
             width: 100%;
             height: 100%;
             z-index: 1
         }
         
-        .slide {
+        .screen {
             position: absolute;
             inset: 0;
-            padding: 34px 44px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(4, minmax(0, 1fr));
-            gap: 14px 58px;
             opacity: 0;
-            transform: translateY(12px);
-            transition: opacity .75s ease, transform .75s ease;
+            transform: translateY(10px);
+            transition: opacity .65s ease, transform .65s ease;
             pointer-events: none;
         }
         
-        .slide.active {
+        .screen.active {
             opacity: 1;
             transform: none;
             pointer-events: auto
         }
+        /* MENÚ */
         
-        .slide.second {
-            grid-template-rows: repeat(2, minmax(0, 1fr));
-            align-content: center;
-            padding-top: 110px;
-            padding-bottom: 110px;
+        .menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(6, minmax(0, 1fr));
+            gap: 2px 44px;
+            padding: 28px 40px 24px;
         }
         
         .beer {
@@ -149,55 +146,56 @@
             min-width: 0;
             display: grid;
             grid-template-columns: minmax(0, 1fr);
+            grid-template-rows: auto 1.35rem auto;
             align-content: center;
-            padding: 8px 0 8px 28px;
+            padding: 7px 0 7px 24px;
         }
         
-        .beer::after {
+        .beer::before {
             content: "";
             position: absolute;
             left: 0;
-            top: 12%;
-            bottom: 12%;
-            width: 12px;
-            background: var(--beer-color);
+            top: 10%;
+            bottom: 10%;
+            width: 11px;
             border-radius: 10px;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, .08);
-        }
-        
-        .content {
-            min-width: 0;
-            align-self: center
+            background: var(--beer-color);
         }
         
         .name {
+            min-width: 0;
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.8rem, 3.55vw, 4.6rem);
-            line-height: .94;
+            font-size: clamp(1.75rem, 2.45vw, 3.15rem);
+            line-height: .92;
             letter-spacing: -.045em;
             text-transform: uppercase;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            text-wrap: balance;
+        }
+        
+        .name.long {
+            font-size: clamp(1.55rem, 2.05vw, 2.68rem)
         }
         
         .sub {
-            margin-top: 7px;
-            font-size: clamp(1.08rem, 1.38vw, 1.58rem);
+            min-height: 1.35rem;
+            margin-top: 4px;
+            font-size: clamp(.84rem, 1.08vw, 1.27rem);
             line-height: 1.05;
-            font-weight: 600;
-            opacity: .9;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-weight: 700;
+            color: rgba(255, 253, 247, .88);
+            white-space: normal;
+            overflow: visible;
         }
         
         .meta {
-            margin-top: 14px;
+            margin-top: 7px;
             display: flex;
             align-items: center;
-            gap: 22px;
-            font-size: clamp(1.5rem, 1.9vw, 2.2rem);
+            gap: 16px;
+            font-size: clamp(1.05rem, 1.36vw, 1.58rem);
             line-height: 1;
             font-weight: 700;
             white-space: nowrap;
@@ -208,20 +206,16 @@
             font-family: 'Archivo Black', sans-serif
         }
         
-        .abv {
-            opacity: .97
-        }
-        
         .bitterness {
             display: flex;
             align-items: center;
-            gap: 5px
+            gap: 4px
         }
         
         .bitterness span {
-            width: 20px;
-            height: 12px;
-            border-radius: 3px;
+            width: 17px;
+            height: 10px;
+            border-radius: 2px;
             border: 2px solid rgba(255, 255, 255, .82);
             display: block;
         }
@@ -233,14 +227,16 @@
         
         .status {
             display: inline-block;
-            margin-left: 10px;
-            font-size: .8em;
-            letter-spacing: .06em;
+            margin-left: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .42em;
+            letter-spacing: .08em;
+            vertical-align: middle;
             color: var(--aqua);
         }
         
         .beer.not-available {
-            opacity: .44
+            opacity: .52
         }
         
         .beer.not-available .name {
@@ -251,39 +247,201 @@
         .beer.proximamente .name {
             color: var(--yellow)
         }
+        /* MENSAJES */
         
-        .slide.second .name {
-            font-size: clamp(3.4rem, 4.35vw, 5.3rem)
+        .message {
+            display: grid;
+            place-items: center;
+            padding: 58px 90px;
+            text-align: center;
         }
         
-        .slide.second .sub {
-            font-size: clamp(1.3rem, 1.65vw, 1.9rem)
+        .message-card {
+            width: min(1380px, 92vw);
+            min-height: 72vh;
+            display: grid;
+            align-content: center;
+            justify-items: center;
+            gap: 10px;
+            position: relative;
         }
         
-        .slide.second .meta {
-            font-size: clamp(1.75rem, 2.2vw, 2.5rem)
+        .message-kicker {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2rem, 3.2vw, 4rem);
+            line-height: .95;
+            text-transform: uppercase;
+        }
+        
+        .message-highlight {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(4.3rem, 8.8vw, 10.2rem);
+            line-height: .84;
+            letter-spacing: -.055em;
+            text-transform: uppercase;
+            color: var(--message-color, var(--yellow));
+            text-wrap: balance;
+        }
+        
+        .message-text {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.8rem, 2.8vw, 3.5rem);
+            line-height: .95;
+            text-transform: uppercase;
+        }
+        
+        .message-big {
+            white-space: pre-line;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 6.2vw, 7.2rem);
+            line-height: .86;
+            letter-spacing: -.04em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            text-wrap: balance;
+        }
+        
+        .message-footer {
+            margin-top: 4px;
+            max-width: 1050px;
+            font-size: clamp(1.3rem, 2vw, 2.4rem);
+            line-height: 1.05;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        /* Variantes de composición para mensajes */
+        
+        .message-card.layout-center {
+            text-align: center;
+        }
+        
+        .message-card.layout-center .message-highlight {
+            font-size: clamp(5rem, 10.5vw, 12rem);
+        }
+        
+        .message-card.layout-hero {
+            justify-items: start;
+            text-align: left;
+            padding-left: 7vw;
+        }
+        
+        .message-card.layout-hero .message-highlight {
+            font-size: clamp(6rem, 12vw, 13rem);
+            max-width: 88%;
+        }
+        
+        .message-card.layout-hero .message-big {
+            max-width: 75%;
+        }
+        
+        .message-card.layout-offset {
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            text-align: left;
+            column-gap: 5vw;
+        }
+        
+        .message-card.layout-offset .message-kicker,
+        .message-card.layout-offset .message-highlight {
+            justify-self: end;
+            text-align: right;
+        }
+        
+        .message-card.layout-offset .message-text,
+        .message-card.layout-offset .message-big,
+        .message-card.layout-offset .message-footer {
+            justify-self: start;
+            text-align: left;
+        }
+        
+        .message-card.layout-offset .message-kicker {
+            grid-column: 1;
+            grid-row: 1
+        }
+        
+        .message-card.layout-offset .message-highlight {
+            grid-column: 1;
+            grid-row: 2 / span 3
+        }
+        
+        .message-card.layout-offset .message-text {
+            grid-column: 2;
+            grid-row: 1
+        }
+        
+        .message-card.layout-offset .message-big {
+            grid-column: 2;
+            grid-row: 2
+        }
+        
+        .message-card.layout-offset .message-footer {
+            grid-column: 2;
+            grid-row: 3
+        }
+        
+        .message-card.layout-stack {
+            justify-items: start;
+            text-align: left;
+            padding: 0 9vw;
+        }
+        
+        .message-card.layout-stack .message-kicker {
+            font-size: clamp(1.5rem, 2.4vw, 3rem)
+        }
+        
+        .message-card.layout-stack .message-highlight {
+            font-size: clamp(4.8rem, 9.8vw, 11rem);
+            max-width: 90%;
+        }
+        
+        .message-card.layout-stack .message-big {
+            margin-top: 4vh;
+            font-size: clamp(2.8rem, 5.5vw, 6.5rem);
+            max-width: 82%;
+        }
+        
+        .message-card.tipo-curiosidad::before {
+            content: "";
+            position: absolute;
+            width: 210px;
+            height: 22px;
+            background: var(--message-color);
+            border-radius: 999px;
+            transform: rotate(-5deg);
+            top: 6%;
+            right: 8%;
+            opacity: .95;
+        }
+        
+        .message-card.tipo-curiosidad::after {
+            content: "?";
+            position: absolute;
+            right: 6%;
+            bottom: 0;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(9rem, 18vw, 20rem);
+            line-height: .8;
+            color: rgba(255, 255, 255, .10);
         }
         
         .progress {
             position: fixed;
             left: 50%;
-            bottom: 18px;
+            bottom: 15px;
             transform: translateX(-50%);
             display: flex;
-            gap: 9px;
-            z-index: 4
+            gap: 8px;
+            z-index: 5
         }
         
-        .progress button {
-            width: 34px;
+        .progress span {
+            width: 28px;
             height: 5px;
-            border: 0;
-            padding: 0;
             border-radius: 99px;
             background: rgba(255, 255, 255, .28)
         }
         
-        .progress button.active {
+        .progress span.active {
             background: var(--yellow)
         }
         
@@ -291,22 +449,28 @@
             body {
                 overflow: auto
             }
-            .viewport {
+            .stage {
                 height: auto;
                 min-height: 100vh
             }
-            .slide,
-            .slide.second {
+            .screen {
                 position: relative;
                 opacity: 1;
                 transform: none;
+                pointer-events: auto
+            }
+            .menu {
                 grid-template-columns: 1fr;
                 grid-template-rows: none;
-                padding: 24px;
-                gap: 18px
+                padding: 20px;
+                gap: 10px
             }
             .beer {
-                min-height: 170px
+                min-height: 135px
+            }
+            .message {
+                min-height: 100vh;
+                padding: 35px 24px
             }
             .progress {
                 display: none
@@ -324,117 +488,245 @@
         <svg class="crown" viewBox="0 0 120 110"><path d="M13 91L7 32l33 27L59 9l23 49 31-31-8 67z"></path></svg>
     </div>
 
-    <div class="viewport">
-        <section class="slide active" aria-label="Cervezas 1 a 8">
+    <div class="stage">
+        <section class="screen menu active" id="menuScreen" aria-label="Carta completa de cervezas">
             <article class="beer" style="--beer-color:#f7d273">
-                <div class="content">
-                    <div class="name">American IPA</div>
-                    <div class="sub">Ekuanot · Strata · Simcoe</div>
-                    <div class="meta"><span class="price">$5000</span><span class="abv">5.5%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
-                    </div>
+                <div class="name">American IPA</div>
+                <div class="sub">Ekuanot · Strata · Simcoe</div>
+                <div class="meta"><span class="price">$5000</span><span>5.5%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer" style="--beer-color:#e9ac0c">
-                <div class="content">
-                    <div class="name">Blonde</div>
-                    <div class="meta"><span class="price">$4500</span><span class="abv">4.8%</span><span class="bitterness"><span class="on"></span><span></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name">Blonde</div>
+                <div class="sub">&nbsp;</div>
+                <div class="meta"><span class="price">$4500</span><span>4.8%</span><span class="bitterness"><span class="on"></span><span></span><span></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer" style="--beer-color:#e0610d">
-                <div class="content">
-                    <div class="name">Honey</div>
-                    <div class="meta"><span class="price">$4500</span><span class="abv">6.5%</span><span class="bitterness"><span class="on"></span><span></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name">Honey</div>
+                <div class="sub">&nbsp;</div>
+                <div class="meta"><span class="price">$4500</span><span>6.5%</span><span class="bitterness"><span class="on"></span><span></span><span></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer" style="--beer-color:#dfa82a">
-                <div class="content">
-                    <div class="name">Aberrante · NEIPA</div>
-                    <div class="sub">Mosaic · Citra · Talus</div>
-                    <div class="meta"><span class="price">$6000</span><span class="abv">6.8%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name long">Aberrante · NEIPA</div>
+                <div class="sub">Mosaic · Citra · Talus</div>
+                <div class="meta"><span class="price">$6000</span><span>6.8%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer" style="--beer-color:#cd4b0a">
-                <div class="content">
-                    <div class="name">Dubbel</div>
-                    <div class="sub">Invitada · Cervecería Kankunapa</div>
-                    <div class="meta"><span class="price">$4500</span><span class="abv">6.7%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name">Dubbel</div>
+                <div class="sub">Invitada · Cervecería Kankunapa</div>
+                <div class="meta"><span class="price">$4500</span><span>6.7%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer" style="--beer-color:#191817">
-                <div class="content">
-                    <div class="name">Casi Franuí</div>
-                    <div class="sub">Porter con frambuesas</div>
-                    <div class="meta"><span class="price">$4500</span><span class="abv">5%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name">Casi Franuí</div>
+                <div class="sub">Porter con frambuesas</div>
+                <div class="meta"><span class="price">$4500</span><span>5%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
                 </div>
             </article>
+
             <article class="beer not-available" style="--beer-color:#dbdf04">
-                <div class="content">
-                    <div class="name">Tarea Fina <span class="status">No disponible</span></div>
-                    <div class="sub">Victoria · Patagonia Red</div>
-                    <div class="meta"><span class="price">$5000</span><span class="abv">4.8%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
-                    </div>
+                <div class="name long">Tarea Fina <span class="status">Vuelve pronto</span></div>
+                <div class="sub">Victoria · Patagonia Red</div>
+                <div class="meta"><span class="price">$5000</span><span>4.8%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer not-available" style="--beer-color:#f1a23b">
-                <div class="content">
-                    <div class="name">Gose · Jabalina <span class="status">No disponible</span></div>
-                    <div class="sub">Mango · Lima · Ají Cayena · Sal</div>
-                    <div class="meta"><span class="price">$5500</span><span class="abv">4%</span><span class="bitterness"><span></span><span></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name long">Gose · Jabalina <span class="status">No disponible</span></div>
+                <div class="sub">Mango · Lima · Ají Cayena · Sal</div>
+                <div class="meta"><span class="price">$5500</span><span>4%</span><span class="bitterness"><span></span><span></span><span></span><span></span><span></span></span>
                 </div>
             </article>
-        </section>
-
-        <section class="slide second" aria-label="Cervezas 9 a 12">
             <article class="beer" style="--beer-color:#cb0a41">
-                <div class="content">
-                    <div class="name">Viaje Cósmico · Sour</div>
-                    <div class="sub">Grosellas · Frutos rojos · Lima</div>
-                    <div class="meta"><span class="price">$5000</span><span class="abv">5.2%</span><span class="bitterness"><span></span><span></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name long">Viaje Cósmico · Sour</div>
+                <div class="sub">Grosellas · Frutos rojos · Lima</div>
+                <div class="meta"><span class="price">$5000</span><span>5.2%</span><span class="bitterness"><span></span><span></span><span></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer" style="--beer-color:#752407">
-                <div class="content">
-                    <div class="name">Scottish</div>
-                    <div class="meta"><span class="price">$4500</span><span class="abv">4.5%</span><span class="bitterness"><span class="on"></span><span></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name">Scottish</div>
+                <div class="sub">&nbsp;</div>
+                <div class="meta"><span class="price">$4500</span><span>4.5%</span><span class="bitterness"><span class="on"></span><span></span><span></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer" style="--beer-color:#191817">
-                <div class="content">
-                    <div class="name">English Porter</div>
-                    <div class="meta"><span class="price">$4500</span><span class="abv">5%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
-                    </div>
+                <div class="name">English Porter</div>
+                <div class="sub">&nbsp;</div>
+                <div class="meta"><span class="price">$4500</span><span>5%</span><span class="bitterness"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span>
                 </div>
             </article>
             <article class="beer proximamente" style="--beer-color:#f1a23b">
-                <div class="content">
-                    <div class="name">Doble IPA <span class="status">Próximamente</span></div>
-                    <div class="meta"><span class="price">—</span><span class="abv">—</span><span class="bitterness"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
-                    </div>
+                <div class="name long">Doble IPA <span class="status">Próximamente</span></div>
+                <div class="sub">&nbsp;</div>
+                <div class="meta"><span class="price">—</span><span>—</span><span class="bitterness"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></span>
                 </div>
             </article>
         </section>
+
+        <section class="screen message" id="messageScreen" aria-live="polite">
+            <div class="message-card" id="messageCard">
+                <div class="message-kicker" id="msgTitle"></div>
+                <div class="message-highlight" id="msgHighlight"></div>
+                <div class="message-text" id="msgText"></div>
+                <div class="message-big" id="msgBig"></div>
+                <div class="message-footer" id="msgFooter"></div>
+            </div>
+        </section>
     </div>
 
-    <div class="progress" aria-hidden="true"><button class="active"></button><button></button></div>
+    <div class="progress" aria-hidden="true"><span class="active"></span><span></span></div>
+
     <script>
+        const mensajes = [{
+            tipo: 'premio',
+            layout: 'offset',
+            titulo: '¿Sabías que?',
+            destacado: 'nuestra Aberrante',
+            texto: 'fue elegida',
+            grande: '2° mejor NEIPA ',
+            pie: 'en la Copa Argentina de Cervezas 2026',
+            color: '#ff4f93'
+        }, {
+            tipo: 'premio',
+            layout: 'center',
+            titulo: 'Dentro de poco en canillas',
+            texto: '',
+            grande: 'Doble IPA Argenta',
+            pie: 'Mucho lúpulo, mucho alcohol',
+            color: '#ffba08'
+        }, {
+            tipo: 'premio',
+            layout: 'center',
+            titulo: 'Ganamos 3 medallas',
+            texto: 'en la',
+            grande: 'Copa Argentina de Cervezas 2026 ',
+            pie: 'NEIPA plata · Porter plata · IPA bronce',
+            color: '#ffba08'
+        }, {
+            tipo: 'chiste',
+            layout: 'center',
+            titulo: 'Si podés leer',
+            destacado: 'esto',
+            texto: 'todavía te falta tomar 1 o 2 pintas.',
+            grande: '',
+            color: '#f06292'
+        }, {
+            tipo: 'chiste',
+            layout: 'hero',
+            titulo: 'Si la inflamación no se va',
+            destacado: '',
+            texto: '',
+            grande: 'el dolor vuelve?',
+            pie: '',
+            color: '#ff8a33'
+        }, {
+            tipo: 'chiste',
+            layout: 'stack',
+            titulo: 'La cerveza no resuelve',
+            destacado: 'todos los problemas',
+            texto: '',
+            grande: 'pero hace que algunos sean más divertidos',
+            pie: '',
+            color: '#ffd166'
+        }, {
+            tipo: 'curiosidad',
+            layout: 'offset',
+            titulo: '¿Sabías que?',
+            destacado: 'el lúpulo',
+            texto: 'es de la misma familia que',
+            grande: 'el cannabis',
+            pie: 'Aunque no produce los mismos efectos.',
+            color: '#72d0cb'
+        }, {
+            tipo: 'curiosidad',
+            layout: 'hero',
+            titulo: '¿Sabías que?',
+            destacado: 'la espuma',
+            texto: 'ayuda a',
+            grande: 'conservar los aromas ',
+            pie: '',
+            color: '#a8d12f'
+        }, {
+            tipo: 'curiosidad',
+            layout: 'stack',
+            titulo: 'Todas (bueno casi todas) las cervezas',
+            destacado: 'que estás tomando',
+            texto: 'se elaboran',
+            grande: 'acá mismo',
+            pie: 'Fábrica + bar',
+            color: '#65c7c2'
+        }, {
+            tipo: 'producto',
+            layout: 'hero',
+            titulo: '¿Ya probaste',
+            destacado: 'Viaje Cósmico?',
+            texto: 'nuestra sour con',
+            grande: 'Grosellas Frutos rojos y lima ',
+            pie: '',
+            color: '#e94883'
+        }, {
+            tipo: 'redes',
+            layout: 'center',
+            titulo: 'Seguinos en',
+            destacado: '@kirken.brewery',
+            texto: '',
+            grande: 'Novedades Eventos Lanzamientos',
+            pie: '',
+            color: '#72d0cb'
+        }];
+
         (() => {
-            const slides = [...document.querySelectorAll('.slide')];
-            const dots = [...document.querySelectorAll('.progress button')];
-            let current = 0;
-            const show = index => {
-                slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-                current = index;
+            const menu = document.getElementById('menuScreen');
+            const message = document.getElementById('messageScreen');
+            const dots = [...document.querySelectorAll('.progress span')];
+            const title = document.getElementById('msgTitle');
+            const highlight = document.getElementById('msgHighlight');
+            const text = document.getElementById('msgText');
+            const big = document.getElementById('msgBig');
+            const footer = document.getElementById('msgFooter');
+            const card = document.getElementById('messageCard');
+
+            const MENU_MS = 35000;
+            const MESSAGE_MS = 9000;
+            let index = 0;
+            let timer;
+
+            const paintMessage = item => {
+                title.textContent = item.titulo || '';
+                highlight.textContent = item.destacado || '';
+                text.textContent = item.texto || '';
+                big.textContent = item.grande || '';
+                footer.textContent = item.pie || '';
+                card.style.setProperty('--message-color', item.color || '#ffba08');
+                card.className = 'message-card';
+                card.classList.add(`layout-${item.layout || 'center'}`);
+                card.classList.add(`tipo-${item.tipo || 'general'}`);
+                [title, highlight, text, big, footer].forEach(el => el.style.display = el.textContent.trim() ? '' : 'none');
             };
-            setInterval(() => show((current + 1) % slides.length), 10000);
+
+            const showMenu = () => {
+                menu.classList.add('active');
+                message.classList.remove('active');
+                dots[0].classList.add('active');
+                dots[1].classList.remove('active');
+                clearTimeout(timer);
+                timer = setTimeout(showMessage, MENU_MS);
+            };
+
+            const showMessage = () => {
+                paintMessage(mensajes[index]);
+                index = (index + 1) % mensajes.length;
+                menu.classList.remove('active');
+                message.classList.add('active');
+                dots[0].classList.remove('active');
+                dots[1].classList.add('active');
+                clearTimeout(timer);
+                timer = setTimeout(showMenu, MESSAGE_MS);
+            };
+
+            showMenu();
         })();
     </script>
 </body>
