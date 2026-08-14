@@ -581,110 +581,101 @@
     <script>
         const mensajes = [{
             tipo: 'premio',
+            layout: 'offset',
+            titulo: '¿Sabías que?',
+            destacado: 'nuestra Aberrante',
+            texto: 'fue elegida',
+            grande: '2° mejor NEIPA ',
+            pie: 'en la Copa Argentina de Cervezas 2026',
+            color: '#ff4f93'
+        }, {
+            tipo: 'premio',
             layout: 'center',
-            titulo: '',
+            titulo: 'Dentro de poco en canillas',
             texto: '',
-            grande: 'Hoy es el IPA DAY',
-            pie: 'Revisa nuestras promos en el menú',
+            grande: 'Doble IPA Argenta',
+            pie: 'Mucho lúpulo, mucho alcohol',
             color: '#ffba08'
+        }, {
+            tipo: 'premio',
+            layout: 'center',
+            titulo: 'Ganamos 3 medallas',
+            texto: 'en la',
+            grande: 'Copa Argentina de Cervezas 2026 ',
+            pie: 'NEIPA plata · Porter plata · IPA bronce',
+            color: '#ffba08'
+        }, {
+            tipo: 'chiste',
+            layout: 'center',
+            titulo: 'Si podés leer',
+            destacado: 'esto',
+            texto: 'todavía te falta tomar 1 o 2 pintas.',
+            grande: '',
+            color: '#f06292'
+        }, {
+            tipo: 'chiste',
+            layout: 'hero',
+            titulo: 'Si la inflamación no se va',
+            destacado: '',
+            texto: '',
+            grande: 'el dolor vuelve?',
+            pie: '',
+            color: '#ff8a33'
+        }, {
+            tipo: 'chiste',
+            layout: 'stack',
+            titulo: 'La cerveza no resuelve',
+            destacado: 'todos los problemas',
+            texto: '',
+            grande: 'pero hace que algunos sean más divertidos',
+            pie: '',
+            color: '#ffd166'
+        }, {
+            tipo: 'curiosidad',
+            layout: 'offset',
+            titulo: '¿Sabías que?',
+            destacado: 'el lúpulo',
+            texto: 'es de la misma familia que',
+            grande: 'el cannabis',
+            pie: 'Aunque no produce los mismos efectos.',
+            color: '#72d0cb'
+        }, {
+            tipo: 'curiosidad',
+            layout: 'hero',
+            titulo: '¿Sabías que?',
+            destacado: 'la espuma',
+            texto: 'ayuda a',
+            grande: 'conservar los aromas ',
+            pie: '',
+            color: '#a8d12f'
+        }, {
+            tipo: 'curiosidad',
+            layout: 'stack',
+            titulo: 'Todas (bueno casi todas) las cervezas',
+            destacado: 'que estás tomando',
+            texto: 'se elaboran',
+            grande: 'acá mismo',
+            pie: 'Fábrica + bar',
+            color: '#65c7c2'
+        }, {
+            tipo: 'producto',
+            layout: 'hero',
+            titulo: '¿Ya probaste',
+            destacado: 'Viaje Cósmico?',
+            texto: 'nuestra sour con',
+            grande: 'Grosellas Frutos rojos y lima ',
+            pie: '',
+            color: '#e94883'
+        }, {
+            tipo: 'redes',
+            layout: 'center',
+            titulo: 'Seguinos en',
+            destacado: '@kirken.brewery',
+            texto: '',
+            grande: 'Novedades Eventos Lanzamientos',
+            pie: '',
+            color: '#72d0cb'
         }];
-        // }, {
-        //     tipo: 'premio',
-        //     layout: 'offset',
-        //     titulo: '¿Sabías que?',
-        //     destacado: 'nuestra Aberrante',
-        //     texto: 'fue elegida',
-        //     grande: '2° mejor NEIPA ',
-        //     pie: 'en la Copa Argentina de Cervezas 2026',
-        //     color: '#ff4f93'
-        // }, {
-        //     tipo: 'premio',
-        //     layout: 'center',
-        //     titulo: 'Dentro de poco en canillas',
-        //     texto: '',
-        //     grande: 'Doble IPA Argenta',
-        //     pie: 'Mucho lúpulo, mucho alcohol',
-        //     color: '#ffba08'
-        // }, {
-        //     tipo: 'premio',
-        //     layout: 'center',
-        //     titulo: 'Ganamos 3 medallas',
-        //     texto: 'en la',
-        //     grande: 'Copa Argentina de Cervezas 2026 ',
-        //     pie: 'NEIPA plata · Porter plata · IPA bronce',
-        //     color: '#ffba08'
-        // }, {
-        //     tipo: 'chiste',
-        //     layout: 'center',
-        //     titulo: 'Si podés leer',
-        //     destacado: 'esto',
-        //     texto: 'todavía te falta tomar 1 o 2 pintas.',
-        //     grande: '',
-        //     color: '#f06292'
-        // }, {
-        //     tipo: 'chiste',
-        //     layout: 'hero',
-        //     titulo: 'Si la inflamación no se va',
-        //     destacado: '',
-        //     texto: '',
-        //     grande: 'el dolor vuelve?',
-        //     pie: '',
-        //     color: '#ff8a33'
-        // }, {
-        //     tipo: 'chiste',
-        //     layout: 'stack',
-        //     titulo: 'La cerveza no resuelve',
-        //     destacado: 'todos los problemas',
-        //     texto: '',
-        //     grande: 'pero hace que algunos sean más divertidos',
-        //     pie: '',
-        //     color: '#ffd166'
-        // }, {
-        //     tipo: 'curiosidad',
-        //     layout: 'offset',
-        //     titulo: '¿Sabías que?',
-        //     destacado: 'el lúpulo',
-        //     texto: 'es de la misma familia que',
-        //     grande: 'el cannabis',
-        //     pie: 'Aunque no produce los mismos efectos.',
-        //     color: '#72d0cb'
-        // }, {
-        //     tipo: 'curiosidad',
-        //     layout: 'hero',
-        //     titulo: '¿Sabías que?',
-        //     destacado: 'la espuma',
-        //     texto: 'ayuda a',
-        //     grande: 'conservar los aromas ',
-        //     pie: '',
-        //     color: '#a8d12f'
-        // }, {
-        //     tipo: 'curiosidad',
-        //     layout: 'stack',
-        //     titulo: 'Todas (bueno casi todas) las cervezas',
-        //     destacado: 'que estás tomando',
-        //     texto: 'se elaboran',
-        //     grande: 'acá mismo',
-        //     pie: 'Fábrica + bar',
-        //     color: '#65c7c2'
-        // }, {
-        //     tipo: 'producto',
-        //     layout: 'hero',
-        //     titulo: '¿Ya probaste',
-        //     destacado: 'Viaje Cósmico?',
-        //     texto: 'nuestra sour con',
-        //     grande: 'Grosellas Frutos rojos y lima ',
-        //     pie: '',
-        //     color: '#e94883'
-        // }, {
-        //     tipo: 'redes',
-        //     layout: 'center',
-        //     titulo: 'Seguinos en',
-        //     destacado: '@kirken.brewery',
-        //     texto: '',
-        //     grande: 'Novedades Eventos Lanzamientos',
-        //     pie: '',
-        //     color: '#72d0cb'
-        // }];
 
         (() => {
             const menu = document.getElementById('menuScreen');
